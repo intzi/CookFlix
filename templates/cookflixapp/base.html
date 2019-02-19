@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static "bootstrap/bootstrap.min.css" %}">
+  </head>
+  <body>
+    {% block body_block %}
+
+    {% endblock %}
+
+    <script type="text/javascript" src="{% static "bootstrap/bootstrap.min.js" %}"/>
+  </body>
+</html>
