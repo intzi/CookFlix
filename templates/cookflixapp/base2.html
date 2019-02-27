@@ -26,9 +26,7 @@
 
 <body>
 
-{% block body_block %}
 
-{% endblock %}
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="preloader-content">
@@ -201,6 +199,13 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
+    <!-- ##### Main Area Start ##### -->
+    <div class="treading-post-area" id="treadingPost">
+      {% block body_block %}
+
+      {% endblock %}
+    </div>
+    <!-- ##### Main Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
