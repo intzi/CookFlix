@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_readonly_field',
+#    'django_readonly_field',
     'cookflixapp',
 ]
 
