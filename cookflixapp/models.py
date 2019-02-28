@@ -1,20 +1,22 @@
 from django.db import models
+import uuid
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    userid = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=30)
+    userid = models.CharField(max_length=32, primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=30)
-    picture = models.ImageField(upload_to=None, height_field='picture_width', width_field='picture_height', max_length=255, null=True, blank=True)
-    preferred_cuisine = models.CharField(max_length=10)
-    rating = models.DecimalField(max_digits=2, decimal_places=1)
+    picture = models.ImageField(upload_to=None, height_field='picture_width', width_field='picture_height', max_length=255, blank=True)
+    preferred_cuisine = models.CharField(max_length=10, blank=True)
+    rating = models.DecimalField(max_digits=2, decimal_places=1, blank=True)
     class ReadonlyMeta:
         readonly= ["rating"]
 
     def __str__(self):
-        return self.userid
+        return self.user.username
 
 class Comment(models.Model):
     recipeid = models.CharField(max_length=30, unique=True)

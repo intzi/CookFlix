@@ -1,3 +1,4 @@
+from cookflixapp.forms import UserProfileForm
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -13,3 +14,16 @@ def login(request):
 
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
+
+def register(request):
+    form = UserProfileForm()
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return render(request, 'cookflixapp/home.html', {})
+        else:
+            print(form.errors)
+    else:
+        return render(request ,'cookflixapp/register.html', {'form':form})
