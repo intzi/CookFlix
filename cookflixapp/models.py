@@ -25,6 +25,7 @@ class Comment(models.Model):
 
 class Recipe(models.Model):
     recipeid = models.CharField(max_length=30, unique=True)
+    thumbnail = models.ImageField(upload_to=None, height_field='picture_width', width_field='picture_height', max_length=255, blank=True)
     video_path = models.CharField(max_length=30)
     cuisine_type = models.CharField(max_length=10)
     description = models.CharField(max_length=10)
