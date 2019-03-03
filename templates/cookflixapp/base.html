@@ -70,12 +70,11 @@
                     <div class="col-sm-6">
                       <!-- Login/Register -->
                       <div class="login-area pull-right">
-                        <div class="btn bueno-btn">
-                          Login
-                        </div>
-                        <div class="btn bueno-btn btn-sm">
-                          Register
-                        </div>
+                        <a class="btn bueno-btn" href="{% url 'login' %}">
+                          Login</a>
+                        
+                        <a class="btn bueno-btn btn-sm" href="{% url 'register' %}">
+                          Register</a>
                       </div>
                         <!-- Top Social Info -->
                         <!-- <div class="top-social-info">
@@ -280,7 +279,7 @@
     </div>
 
       {% block body_block %}
-        sdasdsads
+
       {% endblock %}
     <!-- ##### TOP Area End ##### -->
 
