@@ -2,19 +2,19 @@ from django.contrib import admin
 from cookflixapp.models import UserProfile, Comment, Recipe, Review, Saved_Recipes
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('userid', 'email', 'preferred_cuisine', 'rating')
+    list_display = ('user', 'email', 'preferred_cuisine', 'rating')
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('recipeid', 'userid', 'message')
+    list_display = ('recipe', 'user', 'message')
 
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('recipeid', 'userid', 'video_path', 'cuisine_type', 'description', 'taste', 'difficulty', 'price')
+    list_display = ('user', 'video_path', 'cuisine_type', 'description', 'taste', 'difficulty', 'price')
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('recipeid', 'userid', 'taste', 'difficulty', 'price')
+    list_display = ('recipe', 'user', 'taste', 'difficulty', 'price')
 
 class Saved_RecipesAdmin(admin.ModelAdmin):
-    list_display = ('userid', 'recipeid')
+    list_display = ('user', 'recipe')
 
 
 admin.site.register(UserProfile, UserProfileAdmin)
