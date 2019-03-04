@@ -22,7 +22,7 @@ class Recipe(models.Model):
     video_path = models.CharField(max_length=30)
     cuisine_type = models.CharField(max_length=10)
     title = models.CharField(max_length=10)
-    description = models.CharField(max_length=10)
+    description = models.CharField(max_length=300)
     taste = models.IntegerField(default=0)
     difficulty = models.IntegerField(default=0)
     price = models.IntegerField(default=0)
