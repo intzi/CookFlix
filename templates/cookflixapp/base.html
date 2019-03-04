@@ -21,6 +21,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{% static "bootstrap/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "bueno/style.css" %}">
+	<link rel="stylesheet" href="{% static "customcss/style.css" %}">
 
 </head>
 
@@ -67,12 +68,12 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 d-none d-lg-block">
                       <!-- Login/Register -->
                       <div class="login-area pull-right">
                         <a class="btn bueno-btn" href="{% url 'login' %}">
                           Login</a>
-                        
+
                         <a class="btn bueno-btn btn-sm" href="{% url 'register' %}">
                           Register</a>
                       </div>
@@ -179,6 +180,8 @@
                                       </li>
                                       <li><a href="single-post.html">Blog</a></li>
                                       <li><a href="contact.html">Contact</a></li>
+                                      <li class="d-lg-none"><a href="#">Login</a></li>
+                                      <li class="d-lg-none"><a href="#">Register</a></li>
                                   </ul>
 
 
@@ -281,7 +284,6 @@
       {% block body_block %}
 
       {% endblock %}
-    <!-- ##### TOP Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">

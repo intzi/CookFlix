@@ -21,6 +21,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{% static "bootstrap/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "bueno/style.css" %}">
+    <link rel="stylesheet" href="{% static "customcss/style.css" %}">
 
 </head>
 
@@ -54,38 +55,34 @@
     <header class="header-area">
 
         <!-- Top Header Area -->
-        <div class="top-header-area bg-img bg-overlay" style="background-image: url(img/bg-img/header.jpg);">
-            <div class="container h-100">
+        <div class="اheader-2 bg-img bg-overlay" style="background-image: url(img/bg-img/header.jpg);">
+            <div class="container-fluid h-100">
                 <div class="row h-100 align-items-center justify-content-between">
-                    <div class="col-sm-6 col-lg-5 col-xl-4">
-                        <!-- Top Search Area -->
-                        <div class="top-search-area">
+                    <div class="col-sm-2 col-lg-2 col-xl-2">
+                        <!-- Logo -->
+                        <figure style="margin: 0% auto;">
+			              <img style="height:90px;" src="{% static "img/logo.png" %}" alt="">
+			              <figcaption><b style="font-size:25px;" >Cookflix</b></figcaption>
+			            </figure>
+                    </div>
+                    <div class="col-sm-7">
+                      <!-- Menu -->
+                      <p class="menu-2-item"><a href="#">Home</a></p>
+                      <p class="menu-2-item"><a href="#">All Recipes</a></p>
+                      <p class="menu-2-item"><a href="#">Upload</a></p>
+                      <p class="menu-2-item last-menu-item"><a href="#">About</a></p>
+                    </div>
+                    <div class="col-sm-3">
+                      <!-- User Info -->
+                      <p class="user-logged-in">Welcome back Bogdan! <a href="#">Get the hell out of here</a></p>
+                      <div class="top-search-area">
                             <form action="#" method="post">
                                 <div class="row">
-                                    <input type="search" name="top-search" id="topSearch" placeholder="Search for recipes" />
+                                    <input type="search" name="top-search" id="topSearch" class="col-sm-10" placeholder="Search for recipes" />
                                     <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <!-- Login/Register -->
-                      <div class="login-area pull-right">
-                        <a class="btn bueno-btn" href="{% url 'login' %}">
-                          Login</a>
-
-                        <a class="btn bueno-btn btn-sm" href="{% url 'register' %}">
-                          Register</a>
-                      </div>
-                        <!-- Top Social Info -->
-                        <!-- <div class="top-social-info">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -198,15 +195,13 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Main Area Start ##### -->
-    <div class="container">
-      <div class="row">
-        {% block body_block %}
+      <div class="container">
+        <div class="row">
+          {% block body_block %}
 
-        {% endblock %}
+          {% endblock %}
+        </div>
       </div>
-    </div>
-    <!-- ##### Main Area End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">

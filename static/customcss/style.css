@@ -1,0 +1,32 @@
+.اheader-2{
+	position: relative;
+	top: 0px;
+	left: 0px;
+	z-index: 0!important;
+	width: 100%;
+}
+.menu-2-item{
+	display: inline;
+	padding: 5px 10px;
+	margin: 0px;
+	float: left;
+	border-right: 1px solid #000;
+}
+.menu-2-item>a{
+	text-decoration: none;
+	border-bottom: 3px solid #5c3724;
+    border-bottom-style: dotted;
+    color: #5c3724;
+}
+.menu-2-item.last-menu-item{
+	border:0!important;
+}
+#topSearch{
+	border-radius: 20px;
+	outline: 0;
+}
+.user-logged-in>a{
+	text-decoration: none;
+	border-bottom: 3px solid;
+    border-bottom-style: dotted;
+}

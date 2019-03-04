@@ -21,7 +21,8 @@ def browse(request):
     return render(request, 'cookflixapp/browse.html', {'recipes' : recipes })
 
 def recipe(request, id):
-    return render(request, 'cookflixapp/recipe.html', {})
+    recipe = Recipe.objects.get(id=id)
+    return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe})
 
 def upload(request):
 
