@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     email = models.EmailField(unique=True)
     picture = models.ImageField(upload_to=None, blank=True)
     preferred_cuisine = models.CharField(max_length=10, blank=True)
-    rating = models.DecimalField(max_digits=2, decimal_places=1, blank=True)
+    rating = models.DecimalField(max_digits=2, decimal_places=1, blank=True, default=0)
     #class ReadonlyMeta:
     #    readonly= ["rating"]
 

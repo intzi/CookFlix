@@ -15,7 +15,7 @@ class UserProfileForm(forms.ModelForm):
     # password = forms.CharField(max_length=16, help_text="Password")
     # picture = forms.ImageField(help_text="Profile picture", required=False)
     # userid = forms.CharField(widget=forms.HiddenInput(), initial=0)
-    # rating = forms.CharField(widget=forms.HiddenInput(), initial=0)
+    rating = forms.CharField(widget=forms.HiddenInput(), initial=0)
     class Meta:
         model = UserProfile
         fields = ('picture',)

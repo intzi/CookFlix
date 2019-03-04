@@ -2,3 +2,4 @@ __pycahche__/*
 *.sqlite3
 *.pyc
 *.idea
+.vscode/*
