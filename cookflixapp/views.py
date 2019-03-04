@@ -1,6 +1,7 @@
-from cookflixapp.forms import UserProfileForm, UserForm
+from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm
 from django.shortcuts import render
 from django.http import HttpResponse
+from cookflixapp.models import Recipe
 
 # Create your views here.
 def home(request):
@@ -15,9 +16,31 @@ def login(request):
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
 
+def browse(request):
+    recipes = Recipe.objects.all()
+    return render(request, 'cookflixapp/browse.html', {'recipes' : recipes })
+
+def recipe(request, id):
+    return render(request, 'cookflixapp/recipe.html', {})
+
+def upload(request):
+
+    if request.method == 'POST':
+        recipeForm = RecipeForm(data = request.POST)
+
+        if(recipeForm.is_valid()):
+            print("Add recipe here..")
+        else:
+            print(recipeForm.errors)
+
+    else:
+        recipeForm = RecipeForm()
+
+    return render(request, 'cookflixapp/upload.html', {'recipe_form': recipeForm})
+
 def register(request):
     registered = False
-    
+
     if request.method == 'POST':
         userForm = UserForm(data = request.POST)
         profileForm = UserProfileForm(data = request.POST)
@@ -40,4 +63,4 @@ def register(request):
         userForm = UserForm()
         profileForm = UserProfileForm()
 
-    return render(request ,'cookflixapp/register.html', {'userForm':userForm, 'profileForm':profileForm, 'registered':registered})
+    return render(request ,'cookflixapp/register.html', {'user_form':userForm, 'profile_form':profileForm, 'registered':registered})

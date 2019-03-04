@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from cookflixapp.models import UserProfile
+from cookflixapp.models import UserProfile, Recipe
 
 class UserForm(forms.ModelForm):
     password =forms.CharField(widget=forms.PasswordInput())
@@ -20,3 +20,9 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('picture',)
         # exclude = ("preferred_cuisune", )
+
+class RecipeForm(forms.ModelForm):
+
+    class Meta:
+        model = Recipe
+        fields = ('title','video_path','cuisine_type', 'description')

@@ -1,0 +1,44 @@
+{% extends 'cookflixapp/base2.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  Upload
+{% endblock %}
+
+
+{% block body_block %}
+
+
+  <div class="contact-form-area mb-70">
+    <h4 class="mb-50">Upload A Recipe</h4>
+    {% for error in recipe_form.errors %}
+      <div class="alert alert-danger" role="alert">
+        <strong>Required</strong> {{error}}
+      </div>
+    {% endfor %}
+
+    <form id="recipe_form" method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+      <div class="row">
+      {% csrf_token %}
+      {% for field in recipe_form %}
+        <div class="col-lg-12">
+          <div class="form-group">
+            {% if field.name == "video" %}
+              <input required type="file" class="form-control" name="{{ field.name }}"  placeholder="{{ field.name }}">
+            {% else %}
+              <input required type="text" class="form-control" name="{{ field.name }}" placeholder="{{ field.name }}">
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+
+      <div class="col-12">
+        <button class="btn bueno-btn mt-30" type="submit" name="submit">Upload</button>
+      </div>
+    </div>
+    </form>
+  </div>
+
+
+
+{% endblock %}
