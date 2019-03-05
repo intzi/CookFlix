@@ -16,8 +16,14 @@
               <!-- Post Details Content Area -->
               <div class="col-12 col-lg-8 col-xl-9">
                   <div class="post-details-content mb-100">
-                      <div class="blog-thumbnail mb-50">
+                      <div class="blog-thumbnail">
                           <img src="{%  static 'img/food.jpg'%}" alt="">
+                      </div>
+
+                      <div class="blog-video mb-50">
+                          <video controls autoplay width='100%'>
+                            <source src="{{ MEDIA_URL }}{{ recipe.video_file}}" type="video/mp4"> </source>
+                          </video>
                       </div>
                       <div class="blog-content">
                           <a href="#" class="post-tag">{{ recipe.cuisine_type }}</a>
