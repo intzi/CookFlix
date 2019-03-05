@@ -1,8 +1,10 @@
 from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from cookflixapp.models import Recipe
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 
 # Create your views here.
@@ -41,6 +43,7 @@ def upload(request):
         recipeForm = RecipeForm()
 
     return render(request, 'cookflixapp/upload.html', {'recipe_form': recipeForm})
+
 
 def register(request):
     registered = False

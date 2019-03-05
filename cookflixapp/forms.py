@@ -7,7 +7,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username','email','password')
+        fields = ('username','email','password',)
 
 class UserProfileForm(forms.ModelForm):
     # name = forms.CharField(max_length=128, help_text="Full name")
@@ -25,4 +25,4 @@ class RecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe
-        fields = ('title','video_path','cuisine_type', 'description')
+        fields = ('title','video_file','cuisine_type', 'description',)

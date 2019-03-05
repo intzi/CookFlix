@@ -3,11 +3,12 @@ import uuid
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    name = models.CharField(max_length=30, unique=True)
+    # name = models.CharField(max_length=30, unique=True)
     email = models.EmailField(unique=True)
-    picture = models.ImageField(upload_to=None, blank=True)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
     preferred_cuisine = models.CharField(max_length=10, blank=True)
     rating = models.DecimalField(max_digits=2, decimal_places=1, blank=True, default=0)
     #class ReadonlyMeta:
@@ -19,9 +20,9 @@ class UserProfile(models.Model):
 
 class Recipe(models.Model):
     thumbnail = models.ImageField(upload_to=None, blank=True)
-    video_path = models.CharField(max_length=30)
+    video_file = models.FileField(upload_to='videos/', null=True, verbose_name="")
     cuisine_type = models.CharField(max_length=10)
-    title = models.CharField(max_length=10)
+    title = models.CharField(max_length=50)
     description = models.CharField(max_length=300)
     taste = models.IntegerField(default=0)
     difficulty = models.IntegerField(default=0)
@@ -31,7 +32,7 @@ class Recipe(models.Model):
     #    readonly= ["taste", "difficulty", "price"]
 
     def __str__(self):
-        return self
+        return self.title +":"+str(self.video_file)
 
 class Comment(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
@@ -57,3 +58,6 @@ class Review(models.Model):
 
     def __str__(self):
         return self
+
+class Video(models.Model):
+    name=models.CharField(max_length=500)
