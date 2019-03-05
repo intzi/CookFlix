@@ -68,8 +68,8 @@
                     <div class="col-sm-7">
                       <!-- Menu -->
                       <p class="menu-2-item"><a href="{% url 'home' %}">Home</a></p>
-                      <p class="menu-2-item"><a href="#">All Recipes</a></p>
-                      <p class="menu-2-item last-menu-item"><a href="#">About</a></p>
+                      <p class="menu-2-item"><a href="{% url 'browse' %}">All Recipes</a></p>
+                      <p class="menu-2-item last-menu-item"><a href="{% url 'about' %}">About</a></p>
                       {% if user.is_authenticated %}
                       <p class="menu-2-item"><a href="#">Upload</a></p>
                       {% endif %}
