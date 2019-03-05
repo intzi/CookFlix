@@ -67,14 +67,18 @@
                     </div>
                     <div class="col-sm-7">
                       <!-- Menu -->
-                      <p class="menu-2-item"><a href="#">Home</a></p>
+                      <p class="menu-2-item"><a href="{% url 'home' %}">Home</a></p>
                       <p class="menu-2-item"><a href="#">All Recipes</a></p>
-                      <p class="menu-2-item"><a href="#">Upload</a></p>
                       <p class="menu-2-item last-menu-item"><a href="#">About</a></p>
+                      {% if user.is_authenticated %}
+                      <p class="menu-2-item"><a href="#">Upload</a></p>
+                      {% endif %}
+
                     </div>
+                    {% if user.is_authenticated %}
                     <div class="col-sm-3">
                       <!-- User Info -->
-                      <p class="user-logged-in">Welcome back Bogdan! <a href="#">Get the hell out of here</a></p>
+                      <p class="user-logged-in">Welcome back Bogdan! <a href="{% url 'logout' %}">Get the hell out of here</a></p>
                       <div class="top-search-area">
                             <form action="#" method="post">
                                 <div class="row">
@@ -84,6 +88,15 @@
                             </form>
                         </div>
                     </div>
+                    {% else %}
+                    <div class="login-area pull-right">
+                      <a class="btn bueno-btn" href="{% url 'login' %}">
+                        Login</a>
+
+                      <a class="btn bueno-btn btn-sm" href="{% url 'register' %}">
+                        Register</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -123,8 +136,7 @@
                               <!-- Nav Start -->
                               <div class="classynav">
                                   <ul>
-                                      <li><a href="index.html">Home</a></li>
-                                      <li><a href="#">About Us</a></li>
+                                      <li><a href="{% url 'home' %}">Home</a></li>
                                       <li><a href="#">Pages</a>
                                           <ul class="dropdown">
                                               <li><a href="index.html">Home</a></li>
@@ -177,6 +189,7 @@
                                       </li>
                                       <li><a href="single-post.html">Blog</a></li>
                                       <li><a href="contact.html">Contact</a></li>
+                                      <li><a href="{% url 'about' %}">About Us</a></li>
                                   </ul>
 
 

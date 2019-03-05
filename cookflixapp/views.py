@@ -2,6 +2,8 @@ from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm
 from django.shortcuts import render
 from django.http import HttpResponse
 from cookflixapp.models import Recipe
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 # Create your views here.
 def home(request):
@@ -24,6 +26,7 @@ def recipe(request, id):
     recipe = Recipe.objects.get(id=id)
     return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe})
 
+@login_required
 def upload(request):
 
     if request.method == 'POST':
@@ -43,14 +46,14 @@ def register(request):
     registered = False
 
     if request.method == 'POST':
-        userForm = UserForm(data = request.POST)
-        profileForm = UserProfileForm(data = request.POST)
+        user_form = UserForm(data = request.POST)
+        profile_form = UserProfileForm(data = request.POST)
 
-        if userForm.is_valid() and profileForm.is_valid() :
-            user = userForm.save(commit=True)
+        if user_form.is_valid() and profile_form.is_valid() :
+            user = user_form.save(commit=True)
             user.set_password(user.password)
             user.save()
-            profile = profileForm.save(commit = False)
+            profile = profile_form.save(commit = False)
             profile.user = user
 
             if 'picture' in request.FILES:
@@ -59,9 +62,15 @@ def register(request):
             registered = True
 
         else:
-            print(userForm.errors, profileForm.errors)
+            print(user_form.errors, profile_form.errors)
     else:
-        userForm = UserForm()
-        profileForm = UserProfileForm()
+        user_form = UserForm()
+        profile_form = UserProfileForm()
 
-    return render(request ,'cookflixapp/register.html', {'user_form':userForm, 'profile_form':profileForm, 'registered':registered})
+    return render(request ,'cookflixapp/register.html', {'user_form':user_form, 'profile_form':profile_form, 'registered':registered})
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))

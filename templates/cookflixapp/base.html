@@ -126,11 +126,10 @@
                               <!-- Nav Start -->
                               <div class="classynav">
                                   <ul>
-                                      <li><a href="index.html">Home</a></li>
-                                      <li><a href="#">About Us</a></li>
+                                      <li><a href="{% url 'home' %}">Home</a></li>
                                       <li><a href="#">Pages</a>
                                           <ul class="dropdown">
-                                              <li><a href="index.html">Home</a></li>
+                                              <li><a href="{% url 'home' %}">Home</a></li>
                                               <li><a href="catagory.html">Catagory</a></li>
                                               <li><a href="catagory-post.html">Catagory Post</a></li>
                                               <li><a href="single-post.html">Single Post</a></li>
@@ -180,6 +179,7 @@
                                       </li>
                                       <li><a href="single-post.html">Blog</a></li>
                                       <li><a href="contact.html">Contact</a></li>
+                                      <li><a href="{% url 'about' %}">About Us</a></li>
                                       <li class="d-lg-none"><a href="#">Login</a></li>
                                       <li class="d-lg-none"><a href="#">Register</a></li>
                                   </ul>
