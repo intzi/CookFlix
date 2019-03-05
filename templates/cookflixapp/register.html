@@ -24,7 +24,44 @@
           <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
             <div class="row">
             {% csrf_token %}
-            {% for field in user_form %}
+
+            <div class="col-lg-12">
+              <div class="form-group">
+                  <input required type="text" class="form-control" name="username" size="50" placeholder="username">
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="form-group">
+                  <input required type="password" class="form-control" name="password" size="50" placeholder="password">
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="form-group">
+                  <input required type="email" class="form-control" name="email" size="50" placeholder="email">
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="form-group">
+                  <input type="file" class="form-control" name="picture" size="50" placeholder="picture">
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="form-group">
+                  <input type="prefered_cuisine" class="form-control" name="prefered_cuisine" size="10" placeholder="prefered_cuisine">
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <div class="form-group">
+                  <input type="rating" class="form-control" name="rating" size="10" placeholder="rating">
+              </div>
+            </div>
+
+            <!-- {% for field in user_form %}
               <div class="col-lg-12">
                 <div class="form-group">
                   {% if field.name == "email" %}
@@ -51,7 +88,7 @@
                 </div>
               {% endif %}
 
-            {% endfor %}
+            {% endfor %} -->
 
             <div class="col-12">
               <button class="btn bueno-btn mt-30" type="submit" name="submit">Register</button>

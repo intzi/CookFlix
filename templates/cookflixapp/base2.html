@@ -78,7 +78,7 @@
                     {% if user.is_authenticated %}
                     <div class="col-sm-3">
                       <!-- User Info -->
-                      <p class="user-logged-in">Welcome back Bogdan! <a href="{% url 'logout' %}">Get the hell out of here</a></p>
+                      <p class="user-logged-in">Welcome back {{ user.username }} <a href="{% url 'logout' %}">Get the hell out of here</a></p>
                       <div class="top-search-area">
                             <form action="#" method="post">
                                 <div class="row">
