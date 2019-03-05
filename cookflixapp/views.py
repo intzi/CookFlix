@@ -29,7 +29,7 @@ def recipe(request, id):
     recipe = Recipe.objects.get(id=id)
     return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe})
 
-@login_required
+
 def upload(request):
 
     if request.method == 'POST':
