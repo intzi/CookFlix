@@ -23,7 +23,9 @@
       {% for field in recipe_form %}
         <div class="col-lg-12">
           <div class="form-group">
-            {% if field.name == "video" %}
+            {% if field.name == "video_file" %}
+              <input required type="file" class="form-control" name="{{ field.name }}"  placeholder="{{ field.name }}">
+            {% elif field.name == "thumbnail" %}
               <input required type="file" class="form-control" name="{{ field.name }}"  placeholder="{{ field.name }}">
             {% else %}
               <input required type="text" class="form-control" name="{{ field.name }}" placeholder="{{ field.name }}">
