@@ -60,9 +60,11 @@
                     <div class="col-sm-6 col-lg-5 col-xl-4">
                         <!-- Top Search Area -->
                         <div class="top-search-area">
-                            <form action="#" method="post">
+                          <form method='GET' action='{% url 'browse' %}'>
                                 <div class="row">
-                                    <input type="search" name="top-search" id="topSearch" placeholder="Search for recipes" />
+                                    <!-- <input type="search" name="top-search" id="topSearch" placeholder="Search for recipes" />
+                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button> -->
+                                    <input type='text' name='q' id="topSearch" class="col-sm-10" placeholder="Search For Recipes" value='{{ request.GET.q }}'/>
                                     <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                                 </div>
                             </form>
@@ -130,6 +132,8 @@
                                       <li><a href="{% url 'browse' %}">Browse</a></li>
                                       <li><a href="{% url 'upload' %}">Upload</a></li>
                                       <li><a href="{% url 'about' %}">About</a></li>
+                                      <li><a href="{% url 'search' %}">Search API</a></li>
+
                                   </ul>
 
 

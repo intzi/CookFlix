@@ -9,6 +9,7 @@ from django.contrib.auth import logout
 from cookflixapp.webhose_search import run_query
 
 # Create your views here.
+
 def home(request):
     return render(request, 'cookflixapp/home.html', {})
 
@@ -23,13 +24,18 @@ def signup(request):
 
 def browse(request):
     recipes = Recipe.objects.all()
+
+    query = request.GET.get("q")
+    if query:
+        recipes = recipes.filter(title__icontains=query)
+
     return render(request, 'cookflixapp/browse.html', {'recipes' : recipes })
 
 def recipe(request, id):
     recipe = Recipe.objects.get(id=id)
     return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe})
 
-
+@login_required
 def upload(request):
 
     if request.method == 'POST':

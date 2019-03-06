@@ -69,9 +69,10 @@
                       <!-- Menu -->
                       <p class="menu-2-item"><a href="{% url 'home' %}">Home</a></p>
                       <p class="menu-2-item"><a href="{% url 'browse' %}">All Recipes</a></p>
-                      <p class="menu-2-item last-menu-item"><a href="{% url 'about' %}">About</a></p>
+                      <p class="menu-2-item"><a href="{% url 'about' %}">About</a></p>
+                      <p class="menu-2-item"><a href="{% url 'search' %}">Search API</a></p>
                       {% if user.is_authenticated %}
-                      <p class="menu-2-item"><a href="#">Upload</a></p>
+                      <p class="menu-2-item"><a href="{% url 'upload' %}">Upload</a></p>
                       {% endif %}
 
                     </div>
@@ -80,10 +81,14 @@
                       <!-- User Info -->
                       <p class="user-logged-in">Welcome back {{ user.username }} <a href="{% url 'logout' %}">Get the hell out of here</a></p>
                       <div class="top-search-area">
-                            <form action="#" method="post">
+                            <form method='GET' action='{% url 'browse' %}'>
                                 <div class="row">
-                                    <input type="search" name="top-search" id="topSearch" class="col-sm-10" placeholder="Search for recipes" />
+                                    <!-- <input type="search" name="top-search" id="topSearch" class="col-sm-10" placeholder="Search for recipes" />
+                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button> -->
+                                    <input type='text' name='q' id="topSearch" class="col-sm-10" placeholder="Search For Recipes" value='{{ request.GET.q }}'/>
                                     <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                    <!-- <input type='submit' value='Search' /> -->
+
                                 </div>
                             </form>
                         </div>
