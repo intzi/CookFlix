@@ -1,0 +1,54 @@
+{% extends 'cookflixapp/base2.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+Login
+{% endblock %}
+
+
+{% block body_block %}
+
+{% if registered %}
+    <strong>already logged in!</strong>
+    <a href="{% url 'home' %}">Return to the homepage.</a><br />
+{% else %}
+
+  <div class="contact-form-area">
+    <h4 class="mb-50">Login</h4>
+    {% for error in login_form.errors %}
+      <div class="alert alert-danger" role="alert">
+        <strong>Error</strong> {{error}}
+      </div>
+    {% endfor %}
+  </div>
+
+
+
+  <form id="login_form" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="form-group">
+            <input required type="text" class="form-control" name="username" size="50" placeholder="username">
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="form-group">
+            <input required type="password" class="form-control" name="password" size="50" placeholder="password">
+        </div>
+      </div>
+
+      <div class="col-12">
+        <button class="btn bueno-btn mt-30" type="submit" name="submit">Login</button>
+      </div>
+    </div>
+  </form>
+
+
+{% endif %}
+
+
+
+{% endblock %}

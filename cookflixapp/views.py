@@ -16,8 +16,21 @@ def home(request):
 def about(request):
     return render(request, 'cookflixapp/about.html', {})
 
-def login(request):
-    return render(request, 'cookflixapp/login.html', {})
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request,user)
+                return HttpResponseRedirect(reverse('home'))
+            else:
+                return HttpResponseRedirect("Your account is disabled")
+        else:
+            print("Invalid login details: {0}, {1}".format(username,password))
+    else:
+        return render(request, 'cookflixapp/user_login.html', {})
 
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
