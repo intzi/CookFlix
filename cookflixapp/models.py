@@ -11,6 +11,8 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='profile_images', blank=True)
     preferred_cuisine = models.CharField(max_length=10, blank=True)
     rating = models.DecimalField(max_digits=2, decimal_places=1, blank=True, default=0)
+    first_name = models.CharField(max_length=50, blank=False)
+    last_name = models.CharField(max_length=50, blank=False)
     #class ReadonlyMeta:
     #    readonly= ["rating"]
 

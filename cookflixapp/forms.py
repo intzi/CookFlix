@@ -11,15 +11,17 @@ class UserForm(forms.ModelForm):
 
 class UserProfileForm(forms.ModelForm):
     # name = forms.CharField(max_length=128, help_text="Full name")
-    # email = forms.EmailField(max_length=64, help_text="Email")
+    email = forms.EmailField(max_length=64, help_text="Email")
     # password = forms.CharField(max_length=16, help_text="Password")
     # picture = forms.ImageField(help_text="Profile picture", required=False)
     # userid = forms.CharField(widget=forms.HiddenInput(), initial=0)
-    rating = forms.CharField(widget=forms.HiddenInput(), initial=0)
+    # rating = forms.CharField(widget=forms.HiddenInput(), initial=0)
+    first_name = forms.CharField(max_length=20, required=True)
+    last_name = forms.CharField(max_length=20, required=True)
     class Meta:
         model = UserProfile
-        fields = ('picture',)
-        # exclude = ("preferred_cuisune", )
+        fields = ('picture', 'email', 'first_name', 'last_name')
+        # exclude = ('rating', )
 
 class RecipeForm(forms.ModelForm):
 
