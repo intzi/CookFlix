@@ -22,8 +22,11 @@
         {% for field in recipe_form %}
           <div class="col-lg-12">
             <div class="form-group">
-              {% if field.name == "video_file" or field.name == "thumbnail" %}
-                <input id="input_{{field.name}}" required type="file"  name="{{ field.name }}"  placeholder="{{ field.label }}">
+              {% if field.name == "video_file" %}
+                <input class="file-input-hide" id="input_{{field.name}}" required type="file" accept="video/*" name="{{ field.name }}"  placeholder="{{ field.label }}">
+                <label class="form-control" for="input_{{field.name}}">{{ field.label }}</label>
+              {% elif field.name == "thumbnail" %}
+                <input class="file-input-hide" id="input_{{field.name}}" required type="file" accept="image/*" name="{{ field.name }}"  placeholder="{{ field.label }}">
                 <label class="form-control" for="input_{{field.name}}">{{ field.label }}</label>
               {% elif field.name == "user_id" %}
                 <input type="hidden" name="{{ field.name }}" value="{{ user.id }}">
