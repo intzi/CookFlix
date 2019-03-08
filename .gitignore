@@ -4,3 +4,4 @@ __pycahche__/*
 *.idea
 .vscode/*
 *.key
+media/debug/*

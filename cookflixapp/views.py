@@ -51,11 +51,16 @@ def recipe(request, id):
 @login_required
 def upload(request):
 
-    if request.method == 'POST':
-        recipeForm = RecipeForm(data = request.POST)
+    if request.method == 'POST' and request.FILES['video_file']:
+        recipeForm = RecipeForm(request.POST, request.FILES)
 
         if(recipeForm.is_valid()):
-            print("Add recipe here..")
+            data = recipeForm.cleaned_data
+            user_id = data['user_id']
+
+            recipe = recipeForm.save(commit=False)
+            recipe.user_id = user_id
+            recipe.save()
         else:
             print(recipeForm.errors)
 

@@ -1,4 +1,5 @@
 import os
+from django.core.files import File
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','cookflix.settings')
 
 import django
@@ -10,8 +11,7 @@ def populate():
 
     print("!!!!!!!!!!!!!!!!!!!!!!!! POP !!!!!!!!!!!!!!!!!!!")
     cookflix_users = [
-        {   "id" : "1",
-            "username" : "user",
+        {   "username" : "user",
             "password" : "password",
             "user_profile" :
             {
@@ -101,7 +101,7 @@ def populate():
         #add_user_profile(u, user_profile["name"], user_profile["email"])
         for recipe in user["recipes"]:
             print(recipe['video_file'])
-            add_recipe(user["id"], recipe["title"], recipe["description"], recipe["thumbnail"], recipe["video_file"], recipe["cuisine_type"])
+            add_recipe(u.id, recipe["title"], recipe["description"], recipe["thumbnail"], recipe["video_file"], recipe["cuisine_type"])
 
 def add_user(username, password):
 

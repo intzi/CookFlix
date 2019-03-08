@@ -25,6 +25,8 @@ class UserProfileForm(forms.ModelForm):
 
 class RecipeForm(forms.ModelForm):
 
+    user_id = forms.CharField(widget=forms.HiddenInput(), initial=0)
+
     class Meta:
         model = Recipe
-        fields = ('title','video_file','thumbnail','cuisine_type', 'description',)
+        fields = ('title','video_file','thumbnail','cuisine_type', 'description', 'user_id')

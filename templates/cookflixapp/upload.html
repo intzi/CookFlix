@@ -8,39 +8,38 @@
 
 {% block body_block %}
 
-
-  <div class="contact-form-area mb-70">
-    <h4 class="mb-50">Upload A Recipe</h4>
-    {% for error in recipe_form.errors %}
-      <div class="alert alert-danger" role="alert">
-        <strong>Required</strong> {{error}}
-      </div>
-    {% endfor %}
-
-    <form id="recipe_form" method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
-      <div class="row">
-      {% csrf_token %}
-      {% for field in recipe_form %}
-        <div class="col-lg-12">
-          <div class="form-group">
-            {% if field.name == "video_file" %}
-              <input required type="file" class="form-control" name="{{ field.name }}"  placeholder="{{ field.name }}">
-            {% elif field.name == "thumbnail" %}
-              <input required type="file" class="form-control" name="{{ field.name }}"  placeholder="{{ field.name }}">
-            {% else %}
-              <input required type="text" class="form-control" name="{{ field.name }}" placeholder="{{ field.name }}">
-            {% endif %}
-          </div>
+  {% if user.is_authenticated %}
+    <div class="contact-form-area mb-70">
+      <h4 class="mb-50">Upload A Recipe</h4>
+      {% for error in recipe_form.errors %}
+        <div class="alert alert-danger" role="alert">
+          <strong>Error</strong> {{error}}
         </div>
       {% endfor %}
+      <form id="recipe_form" method="post" action="{% url 'upload' %}" enctype="multipart/form-data">
+        <div class="row">
+        {% csrf_token %}
+        {% for field in recipe_form %}
+          <div class="col-lg-12">
+            <div class="form-group">
+              {% if field.name == "video_file" or field.name == "thumbnail" %}
+                <input id="input_{{field.name}}" required type="file"  name="{{ field.name }}"  placeholder="{{ field.label }}">
+                <label class="form-control" for="input_{{field.name}}">{{ field.label }}</label>
+              {% elif field.name == "user_id" %}
+                <input type="hidden" name="{{ field.name }}" value="{{ user.id }}">
+              {% else %}
+                <input required type="text" class="form-control" name="{{ field.name }}" placeholder="{{ field.label }}">
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
 
-      <div class="col-12">
-        <button class="btn bueno-btn mt-30" type="submit" name="submit">Upload</button>
+        <div class="col-12">
+          <button class="btn bueno-btn mt-30" type="submit" name="submit">Upload</button>
+        </div>
       </div>
+      </form>
     </div>
-    </form>
-  </div>
-
-
+  {% endif %}
 
 {% endblock %}

@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.core.validators import FileExtensionValidator
 
 
 class UserProfile(models.Model):
@@ -21,10 +22,10 @@ class UserProfile(models.Model):
 
 
 class Recipe(models.Model):
-    thumbnail = models.ImageField(upload_to=None, blank=True)
-    video_file = models.FileField(upload_to='videos/', null=True, verbose_name="")
+    thumbnail = models.FileField(upload_to="debug/", null=False, verbose_name='Thumbnail Upload', validators=[FileExtensionValidator(allowed_extensions=['png','jpeg','jpg'])])
+    video_file= models.FileField(upload_to="debug/", null=False, verbose_name='Video Upload', validators=[FileExtensionValidator(allowed_extensions=['mp4','webm','ogg'])])
     cuisine_type = models.CharField(max_length=10)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, verbose_name='Recipe Name')
     description = models.CharField(max_length=300)
     taste = models.IntegerField(default=0)
     difficulty = models.IntegerField(default=0)

@@ -8,7 +8,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('recipe', 'user', 'message')
 
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('user', 'video_file', 'cuisine_type', 'description', 'taste', 'difficulty', 'price')
+    list_display = ('user', 'video_file', 'thumbnail', 'cuisine_type', 'description', 'taste', 'difficulty', 'price')
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('recipe', 'user', 'taste', 'difficulty', 'price')
