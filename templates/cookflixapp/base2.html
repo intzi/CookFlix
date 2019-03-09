@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="{% static "bueno/style.css" %}">
     <link rel="stylesheet" href="{% static "customcss/style.css" %}">
 
+    {% block extra_css_files_block %}
+
+    {% endblock %}
+
 </head>
 
 <body>
@@ -261,6 +265,11 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{% static "js/active.js" %}"></script>
     <!-- Custom js -->
     <script src="{% static "customjs/customjs.js" %}"></script>
+
+    {% block extra_js_files_block %}
+
+    {% endblock %}
+    
 </body>
 
 </html>

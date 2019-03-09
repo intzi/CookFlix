@@ -5,6 +5,9 @@
   Recipe
 {% endblock %}
 
+{% block extra_css_files_block %}
+  <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+{% endblock %}
 
 {% block body_block %}
 
@@ -19,10 +22,12 @@
                       <div class="blog-thumbnail">
                           <img src="{%  static 'img/food.jpg'%}" alt="">
                       </div>
-
+{{ MEDIA_URL }}{{ recipe.video_file}}
                       <div class="blog-video mb-50">
                           <video controls autoplay width='100%'>
-                            <source src="{{ MEDIA_URL }}{{ recipe.video_file}}" type="video/mp4"> </source>
+                            <source src="{{ MEDIA_URL }}debug/v1264.mp4" type="video/mp4"> </source>
+                            <source src="{{ MEDIA_URL }}debug/v1264.mp4" type="video/webm"> </source>
+                            <source src="{{ MEDIA_URL }}debug/v1264.mp4" type="video/ogg"> </source>
                           </video>
                       </div>
                       <div class="blog-content">
@@ -140,4 +145,8 @@
 
 
 
+{% endblock %}
+
+{% block extra_js_files_block %}
+  <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
 {% endblock %}
