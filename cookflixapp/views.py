@@ -1,5 +1,7 @@
 from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm
-from django.shortcuts import render
+from cookflixapp.models import UserProfile
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from cookflixapp.models import Recipe
@@ -113,3 +115,32 @@ def search(request):
                 result_list = run_query(query)
 
         return render(request, 'cookflixapp/search.html', {'result_list': result_list})
+
+
+@login_required
+def profile(request, username):
+    user = User.objects.get(username=username)
+    userprofile = UserProfile.objects.get_or_create(user=user)[0]
+    print("cuisine: "+userprofile.preferred_cuisine)
+
+    if request.method == 'POST':
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=request.user)
+
+        if profile_form.is_valid() :
+
+            if 'picture' in request.FILES:
+                userprofile.picture = request.FILES['picture']
+
+            #userprofile.preferred_cuisine = profile_form.data['preferred_cuisine']
+
+            userprofile.save()
+            profile_form.save()
+
+            return redirect('profile', user.username)
+        else:
+            print(profile_form.errors)
+    else:
+        profile_form = UserProfileForm(instance=request.user)
+        print("Form field: "+str(profile_form.data))
+
+    return render(request, 'cookflixapp/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': profile_form})

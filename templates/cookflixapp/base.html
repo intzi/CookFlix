@@ -78,13 +78,12 @@
                       <!-- Login/Register -->
                       <div class="login-area pull-right">
                         {% if user.is_authenticated %}
-                          <a class="btn bueno-btn">{{ user.username }}</a>
+                          <a class="btn bueno-btn" href="{% url 'profile' user.username %}">{{ user.username }} Profile</a>
+                          <a class="btn bueno-btn btn-sm" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                        <a class="btn bueno-btn" href="{% url 'login' %}">Login</a>
+                        <a class="btn bueno-btn btn-sm" href="{% url 'register' %}">Register</a>
                         {% endif %}
-                        <a class="btn bueno-btn" href="{% url 'login' %}">
-                          Login</a>
-
-                        <a class="btn bueno-btn btn-sm" href="{% url 'register' %}">
-                          Register</a>
                       </div>
                         <!-- Top Social Info -->
                         <!-- <div class="top-social-info">

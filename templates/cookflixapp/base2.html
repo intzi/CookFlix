@@ -83,7 +83,8 @@
                     {% if user.is_authenticated %}
                     <div class="col-sm-3">
                       <!-- User Info -->
-                      <p class="user-logged-in">Welcome back {{ user.username }} <a href="{% url 'logout' %}">Get the hell out of here</a></p>
+                      <p class="user-logged-in">Welcome Back ! "{{ user.username }}"
+                      <a class="user-logged-in" href="{% url 'logout' %}">Logout</a></p>
                       <div class="top-search-area">
                             <form method='GET' action='{% url 'browse' %}'>
                                 <div class="row">
@@ -269,7 +270,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     {% block extra_js_files_block %}
 
     {% endblock %}
-    
+
 </body>
 
 </html>

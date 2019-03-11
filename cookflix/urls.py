@@ -16,6 +16,8 @@ urlpatterns = [
     url(r'browse/(?P<id>\d+)/$', views.recipe, name='recipe'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^search/$', views.search, name='search'),
+    url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
+
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
