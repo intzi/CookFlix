@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from cookflixapp.webhose_search import run_query
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -120,27 +121,24 @@ def search(request):
 @login_required
 def profile(request, username):
     user = User.objects.get(username=username)
-    userprofile = UserProfile.objects.get_or_create(user=user)[0]
-    print("cuisine: "+userprofile.preferred_cuisine)
+    user_profile = UserProfile.objects.get(user=user)
 
     if request.method == 'POST':
-        profile_form = UserProfileForm(request.POST, request.FILES, instance=request.user)
-
-        if profile_form.is_valid() :
-
-            if 'picture' in request.FILES:
-                userprofile.picture = request.FILES['picture']
-
-            #userprofile.preferred_cuisine = profile_form.data['preferred_cuisine']
-
-            userprofile.save()
+        #user_form = UserForm(request.POST, instance=user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        if profile_form.is_valid():
+            #user_form.save()
             profile_form.save()
-
+            #messages.success(request, _('Your profile was successfully updated!'))
+            #return redirect('settings:profile')
             return redirect('profile', user.username)
         else:
             print(profile_form.errors)
     else:
-        profile_form = UserProfileForm(instance=request.user)
-        print("Form field: "+str(profile_form.data))
-
-    return render(request, 'cookflixapp/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': profile_form})
+        #user_form = UserForm(instance=user)
+        profile_form = UserProfileForm(instance=user_profile)
+    return render(request, 'cookflixapp/profile.html', {
+        'userprofile': user_profile,
+        'selecteduser': user,
+        'form' : profile_form
+    })

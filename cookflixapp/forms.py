@@ -12,7 +12,7 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     ## name = forms.CharField(max_length=128, help_text="Full name")
 
-    email = forms.EmailField(max_length=64, required=False)
+    #email = forms.EmailField(max_length=64, required=False)
 
     ## password = forms.CharField(max_length=16, help_text="Password")
     picture = forms.ImageField(required=False)
