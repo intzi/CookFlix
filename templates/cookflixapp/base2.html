@@ -73,11 +73,11 @@
                       <!-- Menu -->
                       <p class="menu-2-item"><a href="{% url 'home' %}">Home</a></p>
                       <p class="menu-2-item"><a href="{% url 'browse' %}">All Recipes</a></p>
-                      <p class="menu-2-item"><a href="{% url 'about' %}">About</a></p>
-                      <p class="menu-2-item"><a href="{% url 'search' %}">Search API</a></p>
                       {% if user.is_authenticated %}
                       <p class="menu-2-item"><a href="{% url 'upload' %}">Upload</a></p>
                       {% endif %}
+                      <p class="menu-2-item"><a href="{% url 'about' %}">About</a></p>
+                      <p class="menu-2-item"><a href="{% url 'search' %}">Search API</a></p>
 
                     </div>
                     {% if user.is_authenticated %}

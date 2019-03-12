@@ -29,8 +29,8 @@
                     </div>
                     <!-- Blog Content -->
                     <div class="blog-content">
-                        <a class="post-tag">The Best</a>
-                        <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
+                        <a href="{% url 'recipe' id=recipe.id %}" class="post-tag">{{ recipe.cuisine_type }}</a>
+                        <a class="post-title">{{ recipe.title }}</a>
                         <div class="post-meta">
                             <a class="post-date">July 11, 2018</a>
                             <a class="post-author">By Julia Stiles</a>
