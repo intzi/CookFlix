@@ -33,7 +33,7 @@ def user_login(request):
         else:
             print("Invalid login details: {0}, {1}".format(username,password))
     else:
-        return render(request, 'cookflixapp/user_login.html', {})
+        return render(request, 'cookflixapp/login.html', {})
 
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
