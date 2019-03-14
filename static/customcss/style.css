@@ -14,9 +14,9 @@
 }
 .menu-2-item>a{
 	text-decoration: none;
-	border-bottom: 3px solid #5c3724;
+	border-bottom: 3px solid #ded9d9;
     border-bottom-style: dotted;
-    color: #5c3724;
+    color: #ded9d9;
 }
 .menu-2-item.last-menu-item{
 	border:0!important;
