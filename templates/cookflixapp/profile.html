@@ -6,18 +6,39 @@
 {% endblock %}
 
 {% block body_block %}
-  <h1>{{ userprofile.first_name }} {{ userprofile.last_name }} Profile</h1>
-  <img src="{{ MEDIA_URL }}{{userprofile.picture }}" width="300" height="300" alt="{{selecteduser.username}}"/>
-  <br/>
-
-  <div>
+  <div class="row">
+    <div class="col-sm-6">
+    <h1>{{ userprofile.first_name }} {{ userprofile.last_name }}'s Profile</h1>
+    <img src="{{ MEDIA_URL }}{{userprofile.picture }}" class="img-thumbnail" alt="{{selecteduser.username}}"/>
+    </div>
+    <div class="col-sm-6"><br/><br/><br/>
     {% if selecteduser.username == user.username %}
       <form method="post" action="." enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input class="btn bueno-btn" type="submit" value="Update" />
+        {% for field in form %}
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                {% if field.name == "picture" %}
+                <input  type="file" class="form-control" name="{{ field.name }}" value="{{ field.value }}" size="50" placeholder="{{ field.value }}">
+                {% else %}
+                <input  type="text" class="form-control" name="{{ field.name }}" value="{{ field.value }}" size="50" placeholder="{{ field.name }}">
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+
+        {% endfor %}
+        <div class="row">
+          <input class="btn bueno-btn" type="submit" value="Update" />
+        </div>
       </form>
     {% endif %}
+
   </div>
+  </div>
+
   <div id="edit_profile"></div>
 {% endblock %}
