@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from cookflixapp.webhose_search import run_query
 from django.shortcuts import get_object_or_404
+from pprint import pprint
 
 # Create your views here.
 
@@ -142,3 +143,13 @@ def profile(request, username):
         'selecteduser': user,
         'form' : profile_form
     })
+
+
+
+def save_facebook_profile(backend, user, response, *args, **kwargs):
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!USER: ")
+    firstname, surname = response['name'].split()
+    user_profile = UserProfile.objects.get_or_create(user = user)[0]
+    user_profile.first_name = firstname
+    user_profile.last_name = surname
+    user_profile.save()
