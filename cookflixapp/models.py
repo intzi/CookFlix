@@ -4,6 +4,20 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 
+CUISINE_CHOICES = (
+    ('CHINESE','CHINESE'),
+    ('INDIAN','INDIAN'),
+    ('ITALIAN','ITALIAN'),
+    ('KOREAN','KOREAN'),
+    ('SPANISH','SPANISH'),
+    ('FRENCH','FRENCH'),
+    ('PAKISTANI','PAKISTANI'),
+    ('GREEK','GREEK'),
+    ('JAPANESE','JAPANESE'),
+    ('AMERICAN','AMERICAN'),
+    ('BRITISH','BRITISH'),
+)
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
@@ -14,7 +28,7 @@ class UserProfile(models.Model):
     rating = models.DecimalField(max_digits=2, decimal_places=1, blank=True, default=0)
     first_name = models.CharField(max_length=50, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
-    preferred_cuisine = models.CharField(max_length=50, blank=True)
+    preferred_cuisine = models.CharField(max_length=50, choices=CUISINE_CHOICES, default='CHINESE')
 
     #class ReadonlyMeta:
     #    readonly= ["rating"]
@@ -26,7 +40,7 @@ class UserProfile(models.Model):
 class Recipe(models.Model):
     thumbnail = models.FileField(upload_to="debug/", null=False, verbose_name='Thumbnail Upload', validators=[FileExtensionValidator(allowed_extensions=['png','jpeg','jpg'])])
     video_file= models.FileField(upload_to="debug/", null=False, verbose_name='Video Upload', validators=[FileExtensionValidator(allowed_extensions=['mp4','webm','ogg'])])
-    cuisine_type = models.CharField(max_length=10)
+    cuisine_type = models.CharField(max_length=10, choices=CUISINE_CHOICES, default='CHINESE')
     title = models.CharField(max_length=50, verbose_name='Recipe Name')
     description = models.CharField(max_length=300)
     taste = models.IntegerField(default=0)

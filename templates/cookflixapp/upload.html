@@ -30,6 +30,22 @@
                 <label class="form-control" for="input_{{field.name}}">{{ field.label }}</label>
               {% elif field.name == "user_id" %}
                 <input type="hidden" name="{{ field.name }}" value="{{ user.id }}">
+              {% elif field.name == "cuisine_type" %}
+                <select name="cuisine_type">
+                  <option value="" disabled selected>Choose the cuisine type</option>
+                  <option value="CHINESE">CHINESE</option>
+                  <option value="INDIAN">INDIAN</option>
+                  <option value="ITALIAN">ITALIAN</option>
+                  <option value="KOREAN">KOREAN</option>
+                  <option value="SPANISH">SPANISH</option>
+                  <option value="FRENCH">FRENCH</option>
+                  <option value="PAKISTANI">PAKISTANI</option>
+                  <option value="GREEK">GREEK</option>
+                  <option value="JAPANESE">JAPANESE</option>
+                  <option value="AMERICAN">AMERICAN</option>
+                  <option value="BRITISH">BRITISH</option>
+                </select>
+                <tr>
               {% else %}
                 <input required type="text" class="form-control" name="{{ field.name }}" placeholder="{{ field.label }}">
               {% endif %}

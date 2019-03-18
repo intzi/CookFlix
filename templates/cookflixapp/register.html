@@ -24,7 +24,6 @@
           <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
             <div class="row">
             {% csrf_token %}
-
             <div class="col-lg-12">
               <div class="form-group">
                   <input required type="text" class="form-control" name="username" size="50" placeholder="username">
@@ -51,7 +50,20 @@
 
             <div class="col-lg-12">
               <div class="form-group">
-                  <input type="text" class="form-control" name="preferred_cuisine" size="10" placeholder="Prefered Cuisine - Optional">
+                <select name="preferred_cuisine">
+                  <option value="" disabled selected>Prefered Cuisine - Optional</option>
+                  <option value="CHINESE">CHINESE</option>
+                  <option value="INDIAN">INDIAN</option>
+                  <option value="ITALIAN">ITALIAN</option>
+                  <option value="KOREAN">KOREAN</option>
+                  <option value="SPANISH">SPANISH</option>
+                  <option value="FRENCH">FRENCH</option>
+                  <option value="PAKISTANI">PAKISTANI</option>
+                  <option value="GREEK">GREEK</option>
+                  <option value="JAPANESE">JAPANESE</option>
+                  <option value="AMERICAN">AMERICAN</option>
+                  <option value="BRITISH">BRITISH</option>
+                </select>
               </div>
             </div>
 

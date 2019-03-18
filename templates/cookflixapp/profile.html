@@ -25,6 +25,22 @@
                 {% else %}
                 <input  type="text" class="form-control" name="{{ field.name }}" value="{{ field.value }}" size="50" placeholder="{{ field.name }}">
                 {% endif %}
+                {% if field.name == "preferred_cuisine" %}
+                <select name="preferred_cuisine">
+                  <option value="" disabled selected>Change your preferred cuisine</option>
+                  <option value="CHINESE">CHINESE</option>
+                  <option value="INDIAN">INDIAN</option>
+                  <option value="ITALIAN">ITALIAN</option>
+                  <option value="KOREAN">KOREAN</option>
+                  <option value="SPANISH">SPANISH</option>
+                  <option value="FRENCH">FRENCH</option>
+                  <option value="PAKISTANI">PAKISTANI</option>
+                  <option value="GREEK">GREEK</option>
+                  <option value="JAPANESE">JAPANESE</option>
+                  <option value="AMERICAN">AMERICAN</option>
+                  <option value="BRITISH">BRITISH</option>
+                </select>
+                {% endif %}
               </div>
             </div>
           </div>

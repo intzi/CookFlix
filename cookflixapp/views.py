@@ -38,8 +38,12 @@ def user_login(request):
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
 
-def browse(request):
-    recipes = Recipe.objects.all()
+def browse(request, cuisine_type = ''):
+
+    if cuisine_type == '':
+        recipes = Recipe.objects.all()
+    else:
+        recipes = Recipe.objects.filter(cuisine_type = cuisine_type)
 
     query = request.GET.get("q")
     if query:
