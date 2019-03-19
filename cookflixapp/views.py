@@ -11,11 +11,18 @@ from django.contrib.auth import logout
 from cookflixapp.webhose_search import run_query
 from django.shortcuts import get_object_or_404
 from pprint import pprint
+from hitcount.models import HitCount
+from hitcount.views import HitCountMixin
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'cookflixapp/home.html', {})
+
+    recipes_by_date = Recipe.objects.order_by('-created_at')[:5]
+    recipes_by_views = Recipe.objects.order_by('-views')[:5]
+    context_dict = {"recipes_by_date": recipes_by_date, "recipes_by_views": recipes_by_views}
+
+    return render(request, 'cookflixapp/home.html', context_dict)
 
 def about(request):
     return render(request, 'cookflixapp/about.html', {})
@@ -53,7 +60,19 @@ def browse(request, cuisine_type = ''):
     return render(request, 'cookflixapp/browse.html', {'recipes' : recipes })
 
 def recipe(request, id):
+
+
     recipe = Recipe.objects.get(id=id)
+    # HitCounter
+    # first get the related HitCount object for your model object
+    hit_count = HitCount.objects.get_for_object(recipe)
+    # next, you can attempt to count a hit and get the response
+    # you need to pass it the request object as well
+    hit_count_response = HitCountMixin.hit_count(request, hit_count)
+    if hit_count_response.hit_counted:
+            recipe.views = recipe.views + 1
+            recipe.save()
+
     return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe})
 
 @login_required
@@ -151,7 +170,6 @@ def profile(request, username):
 
 
 def save_facebook_profile(backend, user, response, *args, **kwargs):
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!USER: ")
     firstname, surname = response['name'].split()
     user_profile = UserProfile.objects.get_or_create(user = user)[0]
     user_profile.first_name = firstname

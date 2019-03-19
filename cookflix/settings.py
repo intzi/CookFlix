@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 #    'django_readonly_field',
     'cookflixapp',
     'social_django',
+    'hitcount',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +82,9 @@ TEMPLATES = [
         },
     },
 ]
+
+# default value
+HITCOUNT_KEEP_HIT_ACTIVE = { 'minutes': 2 }
 
 SOCIAL_AUTH_FACEBOOK_KEY = '608876716241384'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '936b0b1c9b5d8a6b459ec9309c409944'  # App Secret
