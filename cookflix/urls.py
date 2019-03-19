@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^search/$', views.search, name='search'),
     url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
+    url(r'^(?P<username>[\w\-]+)/mypost/$', views.mypost, name='mypost'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
