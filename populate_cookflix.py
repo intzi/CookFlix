@@ -11,7 +11,7 @@ def populate():
 
     print("!!!!!!!!!!!!!!!!!!!!!!!! POP !!!!!!!!!!!!!!!!!!!")
     cookflix_users = [
-        {   "username" : "user",
+        {   "username" : "alice",
             "password" : "password",
             "user_profile" :
             {
@@ -26,7 +26,7 @@ def populate():
                     "video_file": "v1.mp4",
                     "cuisine_type": "CHINESE",
                     "title": "Chinese Kung pao Chicken",
-                    "description":"Estimate time:1 h 30 m.4 servings. Ingredients: 1 pound skinless, boneless chicken breast halves - cut into chunks; 2 tablespoons white wine; 2 tablespoons soy sauce; 2 tablespoons sesame oil, divided; 2 tablespoons cornstarch, dissolved in 2 tablespoons water; 1 ounce hot chile paste; 1 teaspoon distilled white vinegar; 2 teaspoons brown sugar; 4 green onions, chopped; 1 tablespoon chopped garlic; 1 (8 ounce) can water chestnuts; 4 ounces chopped peanuts"
+                    "description":"Estimate time:1 h 30 m. 4 servings. Ingredients: 1 pound skinless, boneless chicken breast halves - cut into chunks; 2 tablespoons white wine; 2 tablespoons soy sauce; 2 tablespoons sesame oil, divided; 2 tablespoons cornstarch, dissolved in 2 tablespoons water; 1 ounce hot chile paste; 1 teaspoon distilled white vinegar; 2 teaspoons brown sugar; 4 green onions, chopped; 1 tablespoon chopped garlic; 1 (8 ounce) can water chestnuts; 4 ounces chopped peanuts"
                 },
                 {
                     "thumbnail": "f2.jpg",

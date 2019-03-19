@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from cookflixapp.webhose_search import run_query
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from pprint import pprint
 
@@ -48,7 +49,10 @@ def browse(request, cuisine_type = ''):
 
     query = request.GET.get("q")
     if query:
-        recipes = recipes.filter(title__icontains=query)
+        recipes = recipes.filter(
+            Q(title__icontains=query),
+            Q(description__icontains=query)
+        ).distinct()
 
     return render(request, 'cookflixapp/browse.html', {'recipes' : recipes })
 
@@ -148,6 +152,10 @@ def profile(request, username):
         'form' : profile_form
     })
 
+def mypost(request, username):
+    user = User.objects.get(username=username)
+    recipes = Recipe.objects.filter(user = user)
+    return render(request, 'cookflixapp/mypost.html', {'recipes' : recipes})
 
 
 def save_facebook_profile(backend, user, response, *args, **kwargs):

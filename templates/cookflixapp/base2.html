@@ -157,7 +157,7 @@
                                               <li><a href="contact.html">Contact</a></li>
                                           </ul>
                                       </li>
-                                      <li><a href="#">Cuisines</a>
+                                      <li><a href="{% url 'browse' %}">Cuisines</a>
                                           <div class="megamenu">
                                               <ul class="single-mega cn-col-4">
                                                   <li><a href="{% url 'browse' cuisine_type='CHINESE' %}">- Chinese</a></li>
@@ -181,8 +181,8 @@
                                               </ul>
                                           </div>
                                       </li>
-                                      <li><a href="single-post.html">Blog</a></li>
-                                      <li><a href="contact.html">Contact</a></li>
+                                      <li><a href="{% url 'mypost' user.username %}">My Posts</a></li>
+                                      <li><a href="{% url 'profile' user.username %}">My Profile</a></li>
                                       <li><a href="{% url 'about' %}">About Us</a></li>
                                   </ul>
 
@@ -200,6 +200,7 @@
             </div>
         </div>
     </header>
+
     <!-- ##### Header Area End ##### -->
 
       <div class="container">

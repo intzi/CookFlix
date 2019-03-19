@@ -7,6 +7,9 @@
 
 
 {% block body_block %}
+  {% if uploaded %}
+    <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
+  {% endif %}
 
   {% if user.is_authenticated %}
     <div class="contact-form-area mb-70">
