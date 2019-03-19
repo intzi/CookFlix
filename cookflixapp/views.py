@@ -1,5 +1,5 @@
-from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm
-from cookflixapp.models import UserProfile
+from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm, CommentForm
+from cookflixapp.models import UserProfile, Comment
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
@@ -12,11 +12,18 @@ from cookflixapp.webhose_search import run_query
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from pprint import pprint
+from hitcount.models import HitCount
+from hitcount.views import HitCountMixin
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'cookflixapp/home.html', {})
+
+    recipes_by_date = Recipe.objects.order_by('-created_at')[:5]
+    recipes_by_views = Recipe.objects.order_by('-views')[:5]
+    context_dict = {"recipes_by_date": recipes_by_date, "recipes_by_views": recipes_by_views}
+
+    return render(request, 'cookflixapp/home.html', context_dict)
 
 def about(request):
     return render(request, 'cookflixapp/about.html', {})
@@ -40,12 +47,8 @@ def user_login(request):
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
 
-def browse(request, cuisine_type = ''):
-
-    if cuisine_type == '':
-        recipes = Recipe.objects.all()
-    else:
-        recipes = Recipe.objects.filter(cuisine_type = cuisine_type)
+def browse(request):
+    recipes = Recipe.objects.all()
 
     query = request.GET.get("q")
     if query:
@@ -57,8 +60,32 @@ def browse(request, cuisine_type = ''):
     return render(request, 'cookflixapp/browse.html', {'recipes' : recipes })
 
 def recipe(request, id):
+
     recipe = Recipe.objects.get(id=id)
-    return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe})
+    comments = Comment.objects.filter(recipe = recipe)
+
+    if request.method == 'POST':
+        commentForm = CommentForm(request.POST)
+
+        if commentForm.is_valid():
+            comment = commentForm.save(commit=False)
+            comment.user = request.user
+            comment.recipe = recipe
+            comment.save()
+        else:
+            print(commentForm.errors)
+    elif request.method == 'GET':
+        # HitCounter
+        # first get the related HitCount object for your model object
+        hit_count = HitCount.objects.get_for_object(recipe)
+        # next, you can attempt to count a hit and get the response
+        # you need to pass it the request object as well
+        hit_count_response = HitCountMixin.hit_count(request, hit_count)
+        if hit_count_response.hit_counted:
+                recipe.views = recipe.views + 1
+                recipe.save()
+
+    return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe, 'comments' : comments})
 
 @login_required
 def upload(request):
@@ -159,7 +186,6 @@ def mypost(request, username):
 
 
 def save_facebook_profile(backend, user, response, *args, **kwargs):
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!USER: ")
     firstname, surname = response['name'].split()
     user_profile = UserProfile.objects.get_or_create(user = user)[0]
     user_profile.first_name = firstname

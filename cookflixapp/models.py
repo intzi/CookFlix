@@ -47,8 +47,8 @@ class Recipe(models.Model):
     difficulty = models.IntegerField(default=0)
     price = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    #class ReadonlyMeta:
-    #    readonly= ["taste", "difficulty", "price"]
+    created_at = models.DateTimeField(auto_now_add=True)
+    views = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title +":"+str(self.video_file)
@@ -57,7 +57,7 @@ class Comment(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField()
-
+    created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self
 
