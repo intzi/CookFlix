@@ -55,14 +55,15 @@
         </div>
     </div>
 
-    <!-- ##### Header Area Start ##### -->
     <header class="header-area">
 
         <!-- Top Header Area -->
         <div class="top-header-area bg-img bg-overlay" >
             <div class="container h-100">
                 <div class="row h-100 align-items-center justify-content-between">
+                  <a href="{% url 'home' %}"><figcaption><b style="font-size:25px; color:#FFFFFF" >Cookflix</b></figcaption></a>
                     <div class="col-sm-6 col-lg-5 col-xl-4">
+
                         <!-- Top Search Area -->
                         <div class="top-search-area">
                           <form method='GET' action='{% url 'browse' %}'>
@@ -107,9 +108,9 @@
                     <div class="col-sm-2 col-lg-2 col-xl-2"> -->
                         <!-- Logo -->
                         <!-- <figure style="margin: 0% auto;"> -->
-			              <!-- <img style="height:90px;" src="{% static "img/logo.png" %}" alt=""> -->
-			              <!-- <a href="{% url 'home' %}"><figcaption><b style="font-size:25px; color:#FFFFFF" >Cookflix</b></figcaption></a>
-			            </figure>
+                    <!-- <img style="height:90px;" src="{% static "img/logo.png" %}" alt=""> -->
+                    <!-- <a href="{% url 'home' %}"><figcaption><b style="font-size:25px; color:#FFFFFF" >Cookflix</b></figcaption></a>
+                  </figure>
                     </div> -->
                     <!-- <div class="col-sm-7"> -->
                       <!-- Menu -->
@@ -155,12 +156,13 @@
             </div>
         </div> -->
 
+
         <!-- Logo Area -->
         <div class="logo-area" style="padding:10px;">
           <div class="col-xs-2">
             <figure>
               <img style="height:90px;" src="{% static "img/logo.png" %}" alt="">
-              <figcaption><b style="font-size:25px;" >Cookflix</b></figcaption>
+              <!-- <figcaption><b style="font-size:25px;" >Cookflix</b></figcaption> -->
             </figure>
           </div>
         </div>
@@ -205,7 +207,7 @@
                                        {% if user.is_authenticated %}
                                        <li><a href="{% url 'upload' %}">Upload</a></li>
                                        <li><a href="{% url 'mypost' user.username %}">My Recipes</a></li>
-                                       <!-- <li><a href="{% url 'profile' user.username %}">My Profile</a></li> -->
+                                       <li><a href="{% url 'profile' user.username %}">My Profile</a></li>
                                        {% endif %}
                                        <li><a href="{% url 'about' %}">About</a></li>
 
