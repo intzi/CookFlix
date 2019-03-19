@@ -1,5 +1,5 @@
-from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm
-from cookflixapp.models import UserProfile
+from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm, CommentForm
+from cookflixapp.models import UserProfile, Comment
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
@@ -46,12 +46,8 @@ def user_login(request):
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
 
-def browse(request, cuisine_type = ''):
-
-    if cuisine_type == '':
-        recipes = Recipe.objects.all()
-    else:
-        recipes = Recipe.objects.filter(cuisine_type = cuisine_type)
+def browse(request):
+    recipes = Recipe.objects.all()
 
     query = request.GET.get("q")
     if query:
@@ -61,19 +57,31 @@ def browse(request, cuisine_type = ''):
 
 def recipe(request, id):
 
-
     recipe = Recipe.objects.get(id=id)
-    # HitCounter
-    # first get the related HitCount object for your model object
-    hit_count = HitCount.objects.get_for_object(recipe)
-    # next, you can attempt to count a hit and get the response
-    # you need to pass it the request object as well
-    hit_count_response = HitCountMixin.hit_count(request, hit_count)
-    if hit_count_response.hit_counted:
-            recipe.views = recipe.views + 1
-            recipe.save()
+    comments = Comment.objects.filter(recipe = recipe)
 
-    return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe})
+    if request.method == 'POST':
+        commentForm = CommentForm(request.POST)
+
+        if commentForm.is_valid():
+            comment = commentForm.save(commit=False)
+            comment.user = request.user
+            comment.recipe = recipe
+            comment.save()
+        else:
+            print(commentForm.errors)
+    elif request.method == 'GET':
+        # HitCounter
+        # first get the related HitCount object for your model object
+        hit_count = HitCount.objects.get_for_object(recipe)
+        # next, you can attempt to count a hit and get the response
+        # you need to pass it the request object as well
+        hit_count_response = HitCountMixin.hit_count(request, hit_count)
+        if hit_count_response.hit_counted:
+                recipe.views = recipe.views + 1
+                recipe.save()
+
+    return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe, 'comments' : comments})
 
 @login_required
 def upload(request):

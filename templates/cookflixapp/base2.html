@@ -65,14 +65,14 @@
                     <div class="col-sm-2 col-lg-2 col-xl-2">
                         <!-- Logo -->
                         <figure style="margin: 0% auto;">
-			              <img style="height:90px;" src="{% static "img/logo.png" %}" alt="">
-			              <figcaption><b style="font-size:25px;" >Cookflix</b></figcaption>
+			              <!-- <img style="height:90px;" src="{% static "img/logo.png" %}" alt=""> -->
+			              <figcaption><b style="font-size:25px; color:#FFFFFF" >Cookflix</b></figcaption>
 			            </figure>
                     </div>
                     <div class="col-sm-7">
                       <!-- Menu -->
                       <p class="menu-2-item"><a href="{% url 'home' %}">Home</a></p>
-                      <p class="menu-2-item"><a href="{% url 'browse' %}">All Recipes</a></p>
+                      <p class="menu-2-item"><a href="{% url 'browse' %}">Browse</a></p>
                       {% if user.is_authenticated %}
                       <p class="menu-2-item"><a href="{% url 'upload' %}">Upload</a></p>
                       {% endif %}
@@ -83,7 +83,7 @@
                     {% if user.is_authenticated %}
                     <div class="col-sm-3">
                       <!-- User Info -->
-                      <p class="user-logged-in">Welcome Back ! "{{ user.username }}"
+                      <p class="user-logged-in">Welcome Back ! {{ user.username }}
                       <a class="user-logged-in" href="{% url 'logout' %}">Logout</a></p>
                       <div class="top-search-area">
                             <form method='GET' action='{% url 'browse' %}'>
@@ -112,39 +112,39 @@
         </div>
 
         <!-- Logo Area -->
-        <div class="logo-area" style="padding:10px;">
+        <!-- <div class="logo-area" style="padding:10px;">
           <div class="col-xs-2">
             <figure>
               <img style="height:90px;" src="{% static "img/logo.png" %}" alt="">
               <figcaption><b style="font-size:25px;" >Cookflix</b></figcaption>
             </figure>
           </div>
-        </div>
+        </div> -->
 
         <!-- Navbar Area -->
-        <div class="bueno-main-menu" id="sticker">
+        <!-- <div class="bueno-main-menu" id="sticker">
             <div class="classy-nav-container breakpoint-off">
                 <div class="container-fluid">
                   <div class="row">
-                    <div class="span6" style="float: none; margin: 0 auto;">
+                    <div class="span6" style="float: none; margin: 0 auto;"> -->
 
                       <!-- Menu -->
-                      <nav class="classy-navbar justify-content-between" id="buenoNav">
+                      <!-- <nav class="classy-navbar justify-content-between" id="buenoNav"> -->
                           <!-- Navbar Toggler -->
-                          <div class="classy-navbar-toggler">
+                          <!-- <div class="classy-navbar-toggler">
                               <span class="navbarToggler"><span></span><span></span><span></span></span>
-                          </div>
+                          </div> -->
 
                           <!-- Menu -->
-                          <div class="classy-menu pull-left">
+                          <!-- <div class="classy-menu pull-left"> -->
 
                               <!-- Close Button -->
-                              <div class="classycloseIcon">
+                              <!-- <div class="classycloseIcon">
                                   <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                              </div>
+                              </div> -->
 
                               <!-- Nav Start -->
-                              <div class="classynav">
+                              <!-- <div class="classynav">
                                   <ul>
                                       <li><a href="{% url 'home' %}">Home</a></li>
                                       <li><a href="#">Pages</a>
@@ -187,10 +187,10 @@
                                   </ul>
 
 
-                              </div>
+                              </div> -->
                               <!-- Nav End -->
 
-                          </div>
+                          <!-- </div>
                       </nav>
 
                     </div>
@@ -199,10 +199,15 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> -->
     <!-- ##### Header Area End ##### -->
 
+      <div class="mt-4 col-md-12">
+
+      </div>
+
       <div class="container">
+
         <div class="row">
           {% block body_block %}
 
@@ -214,23 +219,22 @@
     <footer class="footer-area">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-5">
+                <div class="col-2 col-sm-12">
                     <!-- Copywrite Text -->
-                    <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    <!-- <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. </p>-->
                 </div>
-                <div class="col-12 col-sm-7">
-                    <!-- Footer Nav -->
-                    <div class="footer-nav">
-                        <ul>
+                 <div class="col-12 col-sm-7">
+                  <!-- <div class="footer-nav"> -->
+                        <!-- <ul>
                             <li class="active"><a href="#">Home</a></li>
                             <li><a href="#">Recipes</a></li>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
+                        </ul> -->
+                    <!-- </div> -->
                 </div>
             </div>
         </div>

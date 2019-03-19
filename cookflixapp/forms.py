@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from cookflixapp.models import UserProfile, Recipe
+from cookflixapp.models import UserProfile, Recipe, Comment
 
 CUISINE_CHOICES = (
     ('CHINESE','CHINESE'),
@@ -54,3 +54,8 @@ class RecipeForm(forms.ModelForm):
         widgets = {
             'cuisine_type': forms.Select(choices=CUISINE_CHOICES,attrs={'class': 'form-control'}),
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('message',)
