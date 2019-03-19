@@ -1,5 +1,5 @@
-from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm
-from cookflixapp.models import UserProfile
+from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm, CommentForm
+from cookflixapp.models import UserProfile, Comment
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
@@ -10,7 +10,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from cookflixapp.webhose_search import run_query
 from django.shortcuts import get_object_or_404
-from pprint import pprint
 
 # Create your views here.
 
@@ -39,12 +38,8 @@ def user_login(request):
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
 
-def browse(request, cuisine_type = ''):
-
-    if cuisine_type == '':
-        recipes = Recipe.objects.all()
-    else:
-        recipes = Recipe.objects.filter(cuisine_type = cuisine_type)
+def browse(request):
+    recipes = Recipe.objects.all()
 
     query = request.GET.get("q")
     if query:
@@ -53,8 +48,22 @@ def browse(request, cuisine_type = ''):
     return render(request, 'cookflixapp/browse.html', {'recipes' : recipes })
 
 def recipe(request, id):
+
     recipe = Recipe.objects.get(id=id)
-    return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe})
+    comments = Comment.objects.filter(recipe = recipe)
+
+    if request.method == 'POST':
+        commentForm = CommentForm(request.POST)
+
+        if commentForm.is_valid():
+            comment = commentForm.save(commit=False)
+            comment.user = request.user
+            comment.recipe = recipe
+            comment.save()
+        else:
+            print(commentForm.errors)
+
+    return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe, 'comments' : comments})
 
 @login_required
 def upload(request):
@@ -147,13 +156,3 @@ def profile(request, username):
         'selecteduser': user,
         'form' : profile_form
     })
-
-
-
-def save_facebook_profile(backend, user, response, *args, **kwargs):
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!USER: ")
-    firstname, surname = response['name'].split()
-    user_profile = UserProfile.objects.get_or_create(user = user)[0]
-    user_profile.first_name = firstname
-    user_profile.last_name = surname
-    user_profile.save()
