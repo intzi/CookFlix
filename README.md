@@ -4,3 +4,4 @@ System Requirements
 - Pillow 5.4.1
 - bcrypt 3.1.6
 - social-auth-app-django
+- django-hitcount
