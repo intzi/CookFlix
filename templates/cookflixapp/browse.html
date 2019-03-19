@@ -1,4 +1,4 @@
-{% extends 'cookflixapp/base2.html' %}
+{% extends 'cookflixapp/base3.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
@@ -32,7 +32,7 @@
                         <a href="{% url 'browse' cuisine_type=recipe.cuisine_type %}"class="post-tag">{{ recipe.cuisine_type }}</a>
                         <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
                         <div class="post-meta">
-                            <a class="post-date">July 11, 2018</a>
+                            <a class="post-date">{{ recipe.created_at }}</a>
                             <a class="post-author">By {{ recipe.user }}</a>
                         </div>
                         <p>{{ recipe.description }}</p>

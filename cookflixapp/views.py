@@ -33,6 +33,8 @@ def user_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
+
+        errors = {}
         if user:
             if user.is_active:
                 login(request,user)
@@ -40,15 +42,21 @@ def user_login(request):
             else:
                 return HttpResponseRedirect("Your account is disabled")
         else:
-            print("Invalid login details: {0}, {1}".format(username,password))
+            errors = { "Invalid Username and/or Password" }
+
+        return render(request, 'cookflixapp/login.html', { 'errors' : errors })
     else:
         return render(request, 'cookflixapp/login.html', {})
+
 
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
 
-def browse(request):
-    recipes = Recipe.objects.all()
+def browse(request, cuisine_type=''):
+    if cuisine_type == '':
+        recipes = Recipe.objects.all()
+    else:
+        recipes = Recipe.objects.filter(cuisine_type=cuisine_type)
 
     query = request.GET.get("q")
     if query:
