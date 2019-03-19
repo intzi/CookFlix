@@ -19,16 +19,9 @@
               <!-- Post Details Content Area -->
               <div class="col-12 col-lg-8 col-xl-9">
                   <div class="post-details-content mb-100">
-                      <div class="blog-thumbnail">
+                      <!-- <div class="blog-thumbnail">
                           <img src="{{ MEDIA_URL }}{{ recipe.thumbnail }}" alt="">
-                      </div>
-                      <div class="blog-video mb-50">
-                          <video controls autoplay width='100%'>
-                            <source src="{{ MEDIA_URL }}{{ recipe.video_file}}" type="video/mp4"> </source>
-                            <source src="{{ MEDIA_URL }}{{ recipe.video_file}}" type="video/webm"> </source>
-                            <source src="{{ MEDIA_URL }}{{ recipe.video_file}}" type="video/ogg"> </source>
-                          </video>
-                      </div>
+                      </div> -->
                       <div class="blog-content">
                           <a href="#" class="post-tag">{{ recipe.cuisine_type }}</a>
                           <h4 class="post-title">{{ recipe.title }}</h4>
@@ -36,25 +29,36 @@
                               <a href="#" class="post-date">July 11, 2018</a>
                               <a href="#" class="post-author">By Julia Stiles</a>
                           </div>
+                      <div class="blog-video mb-50">
+                          <video controls width='100%'>
+                            <source src="{{ MEDIA_URL }}{{ recipe.video_file}}" type="video/mp4"> </source>
+                            <source src="{{ MEDIA_URL }}{{ recipe.video_file}}" type="video/webm"> </source>
+                            <source src="{{ MEDIA_URL }}{{ recipe.video_file}}" type="video/ogg"> </source>
+                          </video>
+                      </div>
+                          <h6>Description<br/></h6>
                           <p>{{ recipe.description }}</p>
                       </div>
                   </div>
 
+
+
+
                   <!-- Comment Area Start -->
-                  <div class="comment_area clearfix mb-100">
+                   <div class="comment_area clearfix mb-100">
                       <h4 class="mb-50">Comments</h4>
 
-                      <ol>
+                      <!-- <ol> -->
                           <!-- Single Comment Area -->
-                          <li class="single_comment_area">
+                          <!-- <li class="single_comment_area"> -->
                               <!-- Comment Content -->
-                              <div class="comment-content d-flex">
+                              <!-- <div class="comment-content d-flex"> -->
                                   <!-- Comment Author -->
-                                  <div class="comment-author">
+                                  <!-- <div class="comment-author">
                                       <img src="img/bg-img/32.jpg" alt="author">
-                                  </div>
+                                  </div> -->
                                   <!-- Comment Meta -->
-                                  <div class="comment-meta">
+                                  <!-- <div class="comment-meta">
                                       <div class="d-flex">
                                           <a href="#" class="post-author">Jane Smith</a>
                                           <a href="#" class="post-date">July 11, 2018</a>
@@ -65,15 +69,15 @@
                               </div>
 
                               <ol class="children">
-                                  <li class="single_comment_area">
+                                  <li class="single_comment_area"> -->
                                       <!-- Comment Content -->
-                                      <div class="comment-content d-flex">
+                                      <!-- <div class="comment-content d-flex"> -->
                                           <!-- Comment Author -->
-                                          <div class="comment-author">
+                                          <!-- <div class="comment-author">
                                               <img src="img/bg-img/33.jpg" alt="author">
-                                          </div>
+                                          </div> -->
                                           <!-- Comment Meta -->
-                                          <div class="comment-meta">
+                                          <!-- <div class="comment-meta">
                                               <div class="d-flex">
                                                   <a href="#" class="post-author">Christian Williams</a>
                                                   <a href="#" class="post-date">April 15, 2018</a>
@@ -84,18 +88,18 @@
                                       </div>
                                   </li>
                               </ol>
-                          </li>
+                          </li> -->
 
                           <!-- Single Comment Area -->
-                          <li class="single_comment_area">
+                          <!-- <li class="single_comment_area"> -->
                               <!-- Comment Content -->
-                              <div class="comment-content d-flex">
+                              <!-- <div class="comment-content d-flex"> -->
                                   <!-- Comment Author -->
-                                  <div class="comment-author">
+                                  <!-- <div class="comment-author">
                                       <img src="img/bg-img/32.jpg" alt="author">
-                                  </div>
+                                  </div> -->
                                   <!-- Comment Meta -->
-                                  <div class="comment-meta">
+                                  <!-- <div class="comment-meta">
                                       <div class="d-flex">
                                           <a href="#" class="post-author">Cris Williams</a>
                                           <a href="#" class="post-date">July 11, 2018</a>
@@ -109,10 +113,10 @@
                   </div>
 
                   <div class="post-a-comment-area mb-30 clearfix">
-                      <h4 class="mb-50">Leave a reply</h4>
+                      <h4 class="mb-50">Leave a reply</h4> -->
 
                       <!-- Reply Form -->
-                      <div class="contact-form-area">
+                      <!-- <div class="contact-form-area">
                           <form action="#" method="post">
                               <div class="row">
                                   <div class="col-12 col-lg-6">
@@ -138,7 +142,7 @@
 
           </div>
       </div>
-  </section>
+  </section> -->
   <!-- ##### Post Details Area End ##### -->
 
 
