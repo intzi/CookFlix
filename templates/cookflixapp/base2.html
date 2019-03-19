@@ -157,43 +157,27 @@
                                               <li><a href="contact.html">Contact</a></li>
                                           </ul>
                                       </li>
-                                      <li><a href="#">Recipes</a>
+                                      <li><a href="#">Cuisines</a>
                                           <div class="megamenu">
                                               <ul class="single-mega cn-col-4">
-                                                  <li><a href="#">- Recipe</a></li>
-                                                  <li><a href="#">- Bread</a></li>
-                                                  <li><a href="#">- Breakfast</a></li>
-                                                  <li><a href="#">- Meat</a></li>
-                                                  <li><a href="#">- Fastfood</a></li>
-                                                  <li><a href="#">- Salad</a></li>
-                                                  <li><a href="#">- Soup</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='CHINESE' %}">- Chinese</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='INDIAN' %}">- Indian</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='ITALIAN' %}">- Italian</a></li>
                                               </ul>
                                               <ul class="single-mega cn-col-4">
-                                                  <li><a href="#">- Recipe</a></li>
-                                                  <li><a href="#">- Bread</a></li>
-                                                  <li><a href="#">- Breakfast</a></li>
-                                                  <li><a href="#">- Meat</a></li>
-                                                  <li><a href="#">- Fastfood</a></li>
-                                                  <li><a href="#">- Salad</a></li>
-                                                  <li><a href="#">- Soup</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='KOREAN' %}">- Korean</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='SPANISH' %}">- Spanish</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='FRENCH' %}">- French</a></li>
+
                                               </ul>
                                               <ul class="single-mega cn-col-4">
-                                                  <li><a href="#">- Recipe</a></li>
-                                                  <li><a href="#">- Bread</a></li>
-                                                  <li><a href="#">- Breakfast</a></li>
-                                                  <li><a href="#">- Meat</a></li>
-                                                  <li><a href="#">- Fastfood</a></li>
-                                                  <li><a href="#">- Salad</a></li>
-                                                  <li><a href="#">- Soup</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='PAKISTANI' %}">- Pakistani</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='GREEK' %}">- Greek</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='JAPANESE' %}">- Japanese</a></li>
                                               </ul>
                                               <ul class="single-mega cn-col-4">
-                                                  <li><a href="#">- Recipe</a></li>
-                                                  <li><a href="#">- Bread</a></li>
-                                                  <li><a href="#">- Breakfast</a></li>
-                                                  <li><a href="#">- Meat</a></li>
-                                                  <li><a href="#">- Fastfood</a></li>
-                                                  <li><a href="#">- Salad</a></li>
-                                                  <li><a href="#">- Soup</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='AMERICAN' %}">- American</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='BRITISH' %}">- British</a></li>
                                               </ul>
                                           </div>
                                       </li>
