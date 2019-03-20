@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^(?P<username>[\w\-]+)/mypost/$', views.mypost, name='mypost'),
+    url(r'^(?P<id>\d+)/delete/$', views.DeletePost.as_view(), name='delete-post'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

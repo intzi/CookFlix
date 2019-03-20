@@ -2,7 +2,7 @@ from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm, CommentForm
 from cookflixapp.models import UserProfile, Comment
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from cookflixapp.models import Recipe
 from django.contrib.auth.decorators import login_required
@@ -14,6 +14,7 @@ from django.shortcuts import get_object_or_404
 from pprint import pprint
 from hitcount.models import HitCount
 from hitcount.views import HitCountMixin
+from django.views.generic.edit import DeleteView
 
 # Create your views here.
 
@@ -47,8 +48,11 @@ def user_login(request):
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
 
-def browse(request):
-    recipes = Recipe.objects.all()
+def browse(request, cuisine_type=''):
+    if cuisine_type =='':
+        recipes = Recipe.objects.all()
+    else:
+        recipes = Recipe.objects.filter(cuisine_type=cuisine_type)
 
     query = request.GET.get("q")
     if query:
@@ -184,6 +188,16 @@ def mypost(request, username):
     recipes = Recipe.objects.filter(user = user)
     return render(request, 'cookflixapp/mypost.html', {'recipes' : recipes})
 
+def delete_post(request, id):
+    recipe = get_object_or_404(Recipe, id=id)
+    if request.method=='POST':
+        form = RecipeForm(request.POST, instance=recipe)
+        recipe.delete()
+    else:
+        form = RecipeForm(instance=recipe)
+
+    return render(request, 'cookflixapp/mypost.html', {'form' : form})
+
 
 def save_facebook_profile(backend, user, response, *args, **kwargs):
     firstname, surname = response['name'].split()
@@ -191,3 +205,8 @@ def save_facebook_profile(backend, user, response, *args, **kwargs):
     user_profile.first_name = firstname
     user_profile.last_name = surname
     user_profile.save()
+
+
+class DeletePost(DeleteView):
+    model = Recipe
+    success_url = reverse_lazy('mypost')

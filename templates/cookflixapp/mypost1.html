@@ -1,0 +1,50 @@
+{% extends 'cookflixapp/base2.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  Browse
+{% endblock %}
+
+
+{% block body_block %}
+<!-- ##### Posts Area End ##### -->
+<div class="bueno-post-area mb-70">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Post Area -->
+            <div class="col-12 col-lg-8 col-xl-9">
+
+              <!-- <form method='GET' action=''>
+                <input type='text' name='q' placeholder='Search Recipes' value='{{ request.GET.q }}'>
+                <input type='submit' value='Search' />
+              </form> -->
+
+              {% for recipe in recipes %}
+
+                <!-- Single Blog Post -->
+                <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
+                    <!-- Blog Thumbnail -->
+                    <div class="blog-thumbnail" style="width:100px; height:100px">
+                        <img style="width:100px; height:100px"  src="{{ MEDIA_URL }}{{ recipe.thumbnail }}" alt="">
+                    </div>
+                    <!-- Blog Content -->
+                    <div class="blog-content">
+                        <a href="{% url 'browse' cuisine_type=recipe.cuisine_type %}"class="post-tag">{{ recipe.cuisine_type }}</a>
+                        <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
+                        <div class="post-meta">
+                            <a class="post-date">July 11, 2018</a>
+                            <a class="post-author">By {{ recipe.user }}</a>
+                        </div>
+                        <p>{{ recipe.description }}</p>
+                    </div>
+                </div>
+
+              {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- ##### Posts Area End ##### -->
+
+{% endblock %}

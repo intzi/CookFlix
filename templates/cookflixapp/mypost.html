@@ -8,43 +8,34 @@
 
 {% block body_block %}
 <!-- ##### Posts Area End ##### -->
-<div class="bueno-post-area mb-70">
-    <div class="container">
-        <div class="row justify-content-center">
-            <!-- Post Area -->
-            <div class="col-12 col-lg-8 col-xl-9">
-
-              <!-- <form method='GET' action=''>
-                <input type='text' name='q' placeholder='Search Recipes' value='{{ request.GET.q }}'>
-                <input type='submit' value='Search' />
-              </form> -->
-
-              {% for recipe in recipes %}
-
-                <!-- Single Blog Post -->
-                <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
-                    <!-- Blog Thumbnail -->
-                    <div class="blog-thumbnail" style="width:100px; height:100px">
-                        <img style="width:100px; height:100px"  src="{{ MEDIA_URL }}{{ recipe.thumbnail }}" alt="">
-                    </div>
-                    <!-- Blog Content -->
-                    <div class="blog-content">
-                        <a href="{% url 'browse' cuisine_type=recipe.cuisine_type %}"class="post-tag">{{ recipe.cuisine_type }}</a>
-                        <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
-                        <div class="post-meta">
-                            <a class="post-date">July 11, 2018</a>
-                            <a class="post-author">By {{ recipe.user }}</a>
-                        </div>
-                        <p>{{ recipe.description }}</p>
-                    </div>
-                </div>
-
-              {% endfor %}
-            </div>
-
-        </div>
-    </div>
-</div>
+<table class = "table  table-sm table-bordered table-condensed table-responsive">
+  <thead class="thead-dark" >
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Cuisine</th>
+      <th scope="col">Description</th>
+      <th scope="col">Auther</th>
+      <th scope="col">Created At</th>
+      <th scope="col">View</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for recipe in recipes %}
+      <tr>
+        <td>{{ recipe.id }}</td>
+        <td><a href="{% url 'recipe' id=recipe.id %}"{{ recipe.title }}</td>
+        <td>{{ recipe.cuisine_type }}</td>
+        <td>{{ recipe.description }}</td>
+        <td>{{ recipe.user }}</td>
+        <td>{{ recipe.created_at }}</td>
+        <td><a href="{% url 'recipe' id=recipe.id %}"<button class="btn bueno-btn mt-30">View</button></a></td>
+        <td><a href="{% url 'delete-post' id=recipe.id %}"<button class="btn bueno-btn mt-30">Delete</button></a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 <!-- ##### Posts Area End ##### -->
 
 {% endblock %}
