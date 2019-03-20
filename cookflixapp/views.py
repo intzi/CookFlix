@@ -109,7 +109,7 @@ def upload(request):
             recipe = recipeForm.save(commit=False)
             recipe.user_id = user_id
             recipe.save()
-            return redirect("browse")
+            return redirect('recipe', id=recipe.id)
         else:
             print(recipeForm.errors)
 
