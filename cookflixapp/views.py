@@ -34,6 +34,8 @@ def user_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
+
+        errors = {}
         if user:
             if user.is_active:
                 login(request,user)
@@ -41,15 +43,18 @@ def user_login(request):
             else:
                 return HttpResponseRedirect("Your account is disabled")
         else:
-            print("Invalid login details: {0}, {1}".format(username,password))
+            errors = { "Invalid Username and/or Password" }
+
+        return render(request, 'cookflixapp/login.html', { 'errors' : errors })
     else:
         return render(request, 'cookflixapp/login.html', {})
+
 
 def signup(request):
     return render(request, 'cookflixapp/signup.html', {})
 
 def browse(request, cuisine_type=''):
-    if cuisine_type =='':
+    if cuisine_type == '':
         recipes = Recipe.objects.all()
     else:
         recipes = Recipe.objects.filter(cuisine_type=cuisine_type)
@@ -104,6 +109,7 @@ def upload(request):
             recipe = recipeForm.save(commit=False)
             recipe.user_id = user_id
             recipe.save()
+            return redirect("browse")
         else:
             print(recipeForm.errors)
 
@@ -189,14 +195,15 @@ def mypost(request, username):
     return render(request, 'cookflixapp/mypost.html', {'recipes' : recipes})
 
 def delete_post(request, id):
-    recipe = get_object_or_404(Recipe, id=id)
-    if request.method=='POST':
-        form = RecipeForm(request.POST, instance=recipe)
-        recipe.delete()
-    else:
-        form = RecipeForm(instance=recipe)
+    try:
+        if request.method=='POST':
+            recipe = Recipe.objects.get(id=id)
+            user = recipe.user
+            recipe.delete()
+    except:
+        recipe = None
 
-    return render(request, 'cookflixapp/mypost.html', {'form' : form})
+    return redirect('mypost', username = user.username)
 
 
 def save_facebook_profile(backend, user, response, *args, **kwargs):
@@ -205,8 +212,3 @@ def save_facebook_profile(backend, user, response, *args, **kwargs):
     user_profile.first_name = firstname
     user_profile.last_name = surname
     user_profile.save()
-
-
-class DeletePost(DeleteView):
-    model = Recipe
-    success_url = reverse_lazy('mypost')

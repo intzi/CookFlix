@@ -21,7 +21,7 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{% static "bootstrap/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "bueno/style.css" %}">
-  	<link rel="stylesheet" href="{% static "customcss/style.css" %}">
+    <link rel="stylesheet" href="{% static "customcss/style.css" %}">
 
     {% block extra_css_files_block %}
 
@@ -30,6 +30,7 @@
 </head>
 
 <body>
+
 
     <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
@@ -100,6 +101,62 @@
             </div>
         </div>
 
+        <!-- Top Header Area -->
+        <!-- <div class="اheader-2 bg-img bg-overlay" style="background-image: url(img/bg-img/header.jpg);">
+            <div class="container-fluid h-100">
+                <div class="row h-100 align-items-center justify-content-between">
+                    <div class="col-sm-2 col-lg-2 col-xl-2"> -->
+                        <!-- Logo -->
+                        <!-- <figure style="margin: 0% auto;"> -->
+                    <!-- <img style="height:90px;" src="{% static "img/logo.png" %}" alt=""> -->
+                    <!-- <a href="{% url 'home' %}"><figcaption><b style="font-size:25px; color:#FFFFFF" >Cookflix</b></figcaption></a>
+                  </figure>
+                    </div> -->
+                    <!-- <div class="col-sm-7"> -->
+                      <!-- Menu -->
+                      <!-- <p class="menu-2-item"><a href="{% url 'home' %}">Home</a></p>
+                      <p class="menu-2-item"><a href="{% url 'browse' %}">Browse</a></p>
+                      {% if user.is_authenticated %}
+                      <p class="menu-2-item"><a href="{% url 'upload' %}">Upload</a></p>
+                      <p class="menu-2-item"><a href="{% url 'mypost' user.username %}">My Posts</a></p>
+                      <p class="menu-2-item"><a href="{% url 'profile' user.username %}">My Profile</a></p>
+                      {% endif %}
+                      <p class="menu-2-item"><a href="{% url 'about' %}">About</a></p>
+                      <p class="menu-2-item"><a href="{% url 'search' %}">Search API</a></p>
+
+                    </div> -->
+                    <!-- {% if user.is_authenticated %} -->
+                    <!-- <div class="col-sm-3"> -->
+                      <!-- User Info -->
+                      <!-- <p class="user-logged-in">Welcome Back ! {{ user.username }}
+                      <a class="user-logged-in" href="{% url 'logout' %}">Logout</a></p>
+                      <div class="top-search-area">
+                            <form method='GET' action='{% url 'browse' %}'>
+                                <div class="row"> -->
+                                    <!-- <input type="search" name="top-search" id="topSearch" class="col-sm-10" placeholder="Search for recipes" />
+                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button> -->
+                                    <!-- <input type='text' name='q' id="topSearch" class="col-sm-10" placeholder="Search For Recipes" value='{{ request.GET.q }}'/>
+                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button> -->
+                                    <!-- <input type='submit' value='Search' /> -->
+<!--
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="login-area pull-right">
+                      <a class="btn bueno-btn" href="{% url 'login' %}">
+                        Login</a>
+
+                      <a class="btn bueno-btn btn-sm" href="{% url 'register' %}">
+                        Register</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div> -->
+
+
         <!-- Logo Area -->
         <div class="logo-area" style="padding:10px;">
           <div class="col-xs-2">
@@ -133,14 +190,48 @@
                               </div>
 
                               <!-- Nav Start -->
+                              <!-- <p class="menu-2-item"><a href="{% url 'home' %}">Home</a></p>
+                              <p class="menu-2-item"><a href="{% url 'browse' %}">Browse</a></p>
+                              {% if user.is_authenticated %}
+                              <p class="menu-2-item"><a href="{% url 'upload' %}">Upload</a></p>
+                              <p class="menu-2-item"><a href="{% url 'mypost' user.username %}">My Posts</a></p>
+                              <p class="menu-2-item"><a href="{% url 'profile' user.username %}">My Profile</a></p>
+                              {% endif %}
+                              <p class="menu-2-item"><a href="{% url 'about' %}">About</a></p>
+                              <p class="menu-2-item"><a href="{% url 'search' %}">Search API</a></p> -->
+
                               <div class="classynav">
                                   <ul>
                                        <li><a href="{% url 'home' %}">Home</a></li>
                                        <li><a href="{% url 'browse' %}">Browse</a></li>
+                                       <li><a href="{% url 'browse' %}">Cuisines</a>
+                                          <div class="megamenu">
+                                              <ul class="single-mega cn-col-4">
+                                                  <li><a href="{% url 'browse' cuisine_type='CHINESE' %}">- Chinese</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='INDIAN' %}">- Indian</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='ITALIAN' %}">- Italian</a></li>
+                                              </ul>
+                                              <ul class="single-mega cn-col-4">
+                                                  <li><a href="{% url 'browse' cuisine_type='KOREAN' %}">- Korean</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='SPANISH' %}">- Spanish</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='FRENCH' %}">- French</a></li>
+
+                                              </ul>
+                                              <ul class="single-mega cn-col-4">
+                                                  <li><a href="{% url 'browse' cuisine_type='PAKISTANI' %}">- Pakistani</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='GREEK' %}">- Greek</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='JAPANESE' %}">- Japanese</a></li>
+                                              </ul>
+                                              <ul class="single-mega cn-col-4">
+                                                  <li><a href="{% url 'browse' cuisine_type='AMERICAN' %}">- American</a></li>
+                                                  <li><a href="{% url 'browse' cuisine_type='BRITISH' %}">- British</a></li>
+                                              </ul>
+                                          </div>
+                                      </li>
                                        {% if user.is_authenticated %}
                                        <li><a href="{% url 'upload' %}">Upload</a></li>
                                        <li><a href="{% url 'mypost' user.username %}">My Recipes</a></li>
-                                       <li><a href="{% url 'profile' user.username %}">My Profile</a></li>
+                                       <!-- <li><a href="{% url 'profile' user.username %}">My Profile</a></li> -->
                                        {% endif %}
                                        <li><a href="{% url 'about' %}">About</a></li>
 
@@ -149,22 +240,6 @@
 
 
                               </div>
-                              <!-- <div class="classynav">
-                                  <ul>
-                                      <li><a href="{% url 'home' %}">Home</a></li>
-                                      <li><a href="{% url 'browse' %}">Browse</a></li>
-                                    {% if user.is_authenticated %}
-                                      <li><a href="{% url 'upload' %}">Upload</a></li>
-                                      <li><a href="{% url 'mypost' user.username %}">My Posts</a></li>
-                                      <li><a href="{% url 'profile' user.username %}">My Profile</a></li>
-                                    {% endif %}
-                                      <li><a href="{% url 'about' %}">About</a></li>
-                                      <li><a href="{% url 'search' %}">Search API</a></li>
-
-                                  </ul>
-
-
-                              </div> -->
                               <!-- Nav End -->
 
                           </div>
@@ -177,33 +252,40 @@
             </div>
         </div>
     </header>
-    <!-- ##### Header Area End ##### -->
 
-    {% block body_block %}
+      <div class="mt-4 col-md-12">
 
-    {% endblock %}
+      </div>
+
+      <div class="container">
+
+        <div class="row">
+          {% block body_block %}
+
+          {% endblock %}
+        </div>
+      </div>
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-5">
+                <div class="col-2 col-sm-12">
                     <!-- Copywrite Text -->
                     <!-- <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-<!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. </p> -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. </p>-->
                 </div>
-                <div class="col-12 col-sm-7">
-                    <!-- Footer Nav -->
-                    <!-- <div class="footer-nav">
-                        <ul>
+                 <div class="col-12 col-sm-7">
+                  <!-- <div class="footer-nav"> -->
+                        <!-- <ul>
                             <li class="active"><a href="#">Home</a></li>
                             <li><a href="#">Recipes</a></li>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div> -->
+                        </ul> -->
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -227,6 +309,7 @@
     {% block extra_js_files_block %}
 
     {% endblock %}
+
 </body>
 
 </html>

@@ -42,7 +42,7 @@ class Recipe(models.Model):
     video_file= models.FileField(upload_to="debug/", null=False, verbose_name='Video Upload', validators=[FileExtensionValidator(allowed_extensions=['mp4','webm','ogg'])])
     cuisine_type = models.CharField(max_length=10, choices=CUISINE_CHOICES, default='CHINESE')
     title = models.CharField(max_length=50, verbose_name='Recipe Name')
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=2000)
     taste = models.IntegerField(default=0)
     difficulty = models.IntegerField(default=0)
     price = models.IntegerField(default=0)
@@ -52,6 +52,11 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title +":"+str(self.video_file)
+
+    def delete(self, *args, **kwargs):
+        self.video_file.delete()
+        self.thumbnail.delete()
+        super().delete(*args, **kwargs)
 
 class Comment(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)

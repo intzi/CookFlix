@@ -18,16 +18,16 @@
       <div class="container">
           <div class="row justify-content-center">
               <!-- Post Details Content Area -->
-              <div class="col-12 col-lg-8 col-xl-9">
+              <div class="col-12 ">
                   <div class="post-details-content mb-100">
                       <!-- <div class="blog-thumbnail">
                           <img src="{{ MEDIA_URL }}{{ recipe.thumbnail }}" alt="">
                       </div> -->
                       <div class="blog-content">
-                          <a href="#" class="post-tag">{{ recipe.cuisine_type }}</a>
+                          <a href="{% url 'browse' cuisine_type=recipe.cuisine_type %}"class="post-tag">{{ recipe.cuisine_type }}</a>
                           <h4 class="post-title">{{ recipe.title }}</h4>
                           <div class="post-meta mb-50">
-                              <a href="#" class="post-date">July 11, 2018</a>
+                              <a href="#" class="post-date">{{ recipe.created_at }}</a>
                               <a href="#" class="post-author">By {{ recipe.user }}</a>
                           </div>
                       <div class="blog-video mb-50">

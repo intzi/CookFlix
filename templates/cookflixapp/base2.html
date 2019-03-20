@@ -55,23 +55,66 @@
         </div>
     </div>
 
-    <!-- ##### Header Area Start ##### -->
     <header class="header-area">
 
         <!-- Top Header Area -->
-        <div class="اheader-2 bg-img bg-overlay" style="background-image: url(img/bg-img/header.jpg);">
+        <div class="top-header-area bg-img bg-overlay" >
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-between">
+                  <a href="{% url 'home' %}"><figcaption><b style="font-size:25px; color:#FFFFFF" >Cookflix</b></figcaption></a>
+                    <div class="col-sm-6 col-lg-5 col-xl-4">
+
+                        <!-- Top Search Area -->
+                        <div class="top-search-area">
+                          <form method='GET' action='{% url 'browse' %}'>
+                                <div class="row">
+                                    <!-- <input type="search" name="top-search" id="topSearch" placeholder="Search for recipes" />
+                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button> -->
+                                    <input type='text' name='q' id="topSearch" class="col-sm-10" placeholder="Search For Recipes" value='{{ request.GET.q }}'/>
+                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 d-none d-lg-block">
+                      <!-- Login/Register -->
+                      <div class="login-area pull-right">
+                        {% if user.is_authenticated %}
+                          <a class="btn bueno-btn" href="{% url 'profile' user.username %}">{{ user.username }} Profile</a>
+                          <a class="btn bueno-btn btn-sm" href="{% url 'logout' %}">Logout</a>
+                        {% else %}
+                        <a class="btn bueno-btn" href="{% url 'login' %}">Login</a>
+                        <a class="btn bueno-btn btn-sm" href="{% url 'register' %}">Register</a>
+                        {% endif %}
+                      </div>
+                        <!-- Top Social Info -->
+                        <!-- <div class="top-social-info">
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
+                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Header Area -->
+        <!-- <div class="اheader-2 bg-img bg-overlay" style="background-image: url(img/bg-img/header.jpg);">
             <div class="container-fluid h-100">
                 <div class="row h-100 align-items-center justify-content-between">
-                    <div class="col-sm-2 col-lg-2 col-xl-2">
+                    <div class="col-sm-2 col-lg-2 col-xl-2"> -->
                         <!-- Logo -->
-                        <figure style="margin: 0% auto;">
-			              <!-- <img style="height:90px;" src="{% static "img/logo.png" %}" alt=""> -->
-			              <figcaption><b style="font-size:25px; color:#FFFFFF" >Cookflix</b></figcaption>
-			            </figure>
-                    </div>
-                    <div class="col-sm-7">
+                        <!-- <figure style="margin: 0% auto;"> -->
+                    <!-- <img style="height:90px;" src="{% static "img/logo.png" %}" alt=""> -->
+                    <!-- <a href="{% url 'home' %}"><figcaption><b style="font-size:25px; color:#FFFFFF" >Cookflix</b></figcaption></a>
+                  </figure>
+                    </div> -->
+                    <!-- <div class="col-sm-7"> -->
                       <!-- Menu -->
-                      <p class="menu-2-item"><a href="{% url 'home' %}">Home</a></p>
+                      <!-- <p class="menu-2-item"><a href="{% url 'home' %}">Home</a></p>
                       <p class="menu-2-item"><a href="{% url 'browse' %}">Browse</a></p>
                       {% if user.is_authenticated %}
                       <p class="menu-2-item"><a href="{% url 'upload' %}">Upload</a></p>
@@ -81,21 +124,21 @@
                       <p class="menu-2-item"><a href="{% url 'about' %}">About</a></p>
                       <p class="menu-2-item"><a href="{% url 'search' %}">Search API</a></p>
 
-                    </div>
-                    {% if user.is_authenticated %}
-                    <div class="col-sm-3">
+                    </div> -->
+                    <!-- {% if user.is_authenticated %} -->
+                    <!-- <div class="col-sm-3"> -->
                       <!-- User Info -->
-                      <p class="user-logged-in">Welcome Back ! {{ user.username }}
+                      <!-- <p class="user-logged-in">Welcome Back ! {{ user.username }}
                       <a class="user-logged-in" href="{% url 'logout' %}">Logout</a></p>
                       <div class="top-search-area">
                             <form method='GET' action='{% url 'browse' %}'>
-                                <div class="row">
+                                <div class="row"> -->
                                     <!-- <input type="search" name="top-search" id="topSearch" class="col-sm-10" placeholder="Search for recipes" />
                                     <button type="submit" class="btn"><i class="fa fa-search"></i></button> -->
-                                    <input type='text' name='q' id="topSearch" class="col-sm-10" placeholder="Search For Recipes" value='{{ request.GET.q }}'/>
-                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+                                    <!-- <input type='text' name='q' id="topSearch" class="col-sm-10" placeholder="Search For Recipes" value='{{ request.GET.q }}'/>
+                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button> -->
                                     <!-- <input type='submit' value='Search' /> -->
-
+<!--
                                 </div>
                             </form>
                         </div>
@@ -111,14 +154,15 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
+        </div> -->
+
 
         <!-- Logo Area -->
         <div class="logo-area" style="padding:10px;">
           <div class="col-xs-2">
             <figure>
               <img style="height:90px;" src="{% static "img/logo.png" %}" alt="">
-              <figcaption><b style="font-size:25px;" >Cookflix</b></figcaption>
+              <!-- <figcaption><b style="font-size:25px;" >Cookflix</b></figcaption> -->
             </figure>
           </div>
         </div>
@@ -146,43 +190,27 @@
                               </div>
 
                               <!-- Nav Start -->
+                              <!-- <p class="menu-2-item"><a href="{% url 'home' %}">Home</a></p>
+                              <p class="menu-2-item"><a href="{% url 'browse' %}">Browse</a></p>
+                              {% if user.is_authenticated %}
+                              <p class="menu-2-item"><a href="{% url 'upload' %}">Upload</a></p>
+                              <p class="menu-2-item"><a href="{% url 'mypost' user.username %}">My Posts</a></p>
+                              <p class="menu-2-item"><a href="{% url 'profile' user.username %}">My Profile</a></p>
+                              {% endif %}
+                              <p class="menu-2-item"><a href="{% url 'about' %}">About</a></p>
+                              <p class="menu-2-item"><a href="{% url 'search' %}">Search API</a></p> -->
+
                               <div class="classynav">
                                   <ul>
-                                      <li><a href="{% url 'home' %}">Home</a></li>
-                                      <li><a href="#">Pages</a>
-                                          <ul class="dropdown">
-                                              <li><a href="index.html">Home</a></li>
-                                              <li><a href="catagory.html">Catagory</a></li>
-                                              <li><a href="catagory-post.html">Catagory Post</a></li>
-                                              <li><a href="single-post.html">Single Post</a></li>
-                                              <li><a href="receipe.html">Recipe</a></li>
-                                              <li><a href="contact.html">Contact</a></li>
-                                          </ul>
-                                      </li>
-                                      <li><a href="{% url 'browse' %}">Cuisines</a>
-                                          <div class="megamenu">
-                                              <ul class="single-mega cn-col-4">
-                                                  <li><a href="{% url 'browse' cuisine_type='CHINESE' %}">- Chinese</a></li>
-                                                  <li><a href="{% url 'browse' cuisine_type='INDIAN' %}">- Indian</a></li>
-                                                  <li><a href="{% url 'browse' cuisine_type='ITALIAN' %}">- Italian</a></li>
-                                              </ul>
-                                              <ul class="single-mega cn-col-4">
-                                                  <li><a href="{% url 'browse' cuisine_type='KOREAN' %}">- Korean</a></li>
-                                                  <li><a href="{% url 'browse' cuisine_type='SPANISH' %}">- Spanish</a></li>
-                                                  <li><a href="{% url 'browse' cuisine_type='FRENCH' %}">- French</a></li>
+                                       <li><a href="{% url 'home' %}">Home</a></li>
+                                       <li><a href="{% url 'browse' %}">Browse</a></li>
+                                       {% if user.is_authenticated %}
+                                       <li><a href="{% url 'upload' %}">Upload</a></li>
+                                       <li><a href="{% url 'mypost' user.username %}">My Recipes</a></li>
+                                       <li><a href="{% url 'profile' user.username %}">My Profile</a></li>
+                                       {% endif %}
+                                       <li><a href="{% url 'about' %}">About</a></li>
 
-                                              </ul>
-                                              <ul class="single-mega cn-col-4">
-                                                  <li><a href="{% url 'browse' cuisine_type='PAKISTANI' %}">- Pakistani</a></li>
-                                                  <li><a href="{% url 'browse' cuisine_type='GREEK' %}">- Greek</a></li>
-                                                  <li><a href="{% url 'browse' cuisine_type='JAPANESE' %}">- Japanese</a></li>
-                                              </ul>
-                                              <ul class="single-mega cn-col-4">
-                                                  <li><a href="{% url 'browse' cuisine_type='AMERICAN' %}">- American</a></li>
-                                                  <li><a href="{% url 'browse' cuisine_type='BRITISH' %}">- British</a></li>
-                                              </ul>
-                                          </div>
-                                      </li>
 
                                   </ul>
 
@@ -207,7 +235,7 @@
 
       <div class="container">
 
-        <div class="row">
+        <div class="row" style="display:grid">
           {% block body_block %}
 
           {% endblock %}

@@ -8,34 +8,59 @@
 
 {% block body_block %}
 <!-- ##### Posts Area End ##### -->
-<table class = "table  table-sm table-bordered table-condensed table-responsive">
-  <thead class="thead-dark" >
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Title</th>
-      <th scope="col">Cuisine</th>
-      <th scope="col">Description</th>
-      <th scope="col">Auther</th>
-      <th scope="col">Created At</th>
-      <th scope="col">View</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for recipe in recipes %}
-      <tr>
-        <td>{{ recipe.id }}</td>
-        <td><a href="{% url 'recipe' id=recipe.id %}"{{ recipe.title }}</td>
-        <td>{{ recipe.cuisine_type }}</td>
-        <td>{{ recipe.description }}</td>
-        <td>{{ recipe.user }}</td>
-        <td>{{ recipe.created_at }}</td>
-        <td><a href="{% url 'recipe' id=recipe.id %}"<button class="btn bueno-btn mt-30">View</button></a></td>
-        <td><a href="{% url 'delete-post' id=recipe.id %}"<button class="btn bueno-btn mt-30">Delete</button></a></td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="col-lg-12">
+<h4 class="mb-50" align="center">My Recipes</h4>
+</div>
+<!-- <div class="bueno-post-area mb-70"> -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Post Area -->
+            <div class="col-12">
+
+              <!-- <form method='GET' action=''>
+                <input type='text' name='q' placeholder='Search Recipes' value='{{ request.GET.q }}'>
+                <input type='submit' value='Search' />
+              </form> -->
+              <table class="table mb-0" style="table-layout:fixed">
+                <thead class="table-active">
+                  <tr>
+                    <th width="150">Cover</th>
+                    <th>Title</th>
+                    <th width="100">Cuisine</th>
+                    <th width="200">Time</th>
+                    <th width="300">Description</th>
+                    <th width="100">View</th>
+                    <th width="100">Delete</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {% for recipe in recipes %}
+                  <tr>
+                    <td><img src="{{ MEDIA_URL }}{{ recipe.thumbnail }}" alt=""></td>
+                    <td>{{ recipe.title }}</td>
+                    <td>{{ recipe.cuisine_type }}</td>
+                    <td>{{ recipe.created_at }}</td>
+                    <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{ recipe.description }}</td>
+                    <td>
+                      <a href="{% url 'recipe' id=recipe.id %}" class="btn btn-info btn-sm">View</a>
+                    </td>
+                    <td>
+                      <form method="post" action="{% url 'delete_post' id=recipe.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+            </div>
+
+        </div>
+    </div>
+<!-- </div> -->
 <!-- ##### Posts Area End ##### -->
 
 {% endblock %}

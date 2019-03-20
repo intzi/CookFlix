@@ -26,6 +26,7 @@
                 <input  type="text" class="form-control" name="{{ field.name }}" value="{{ field.value }}" size="50" placeholder="{{ field.name }}">
                 {% endif %}
                 {% if field.name == "preferred_cuisine" %}
+                <br/>
                 <select name="preferred_cuisine">
                   <option value="" disabled selected>Change your preferred cuisine</option>
                   <option value="CHINESE">CHINESE</option>
@@ -40,6 +41,7 @@
                   <option value="AMERICAN">AMERICAN</option>
                   <option value="BRITISH">BRITISH</option>
                 </select>
+
                 {% endif %}
               </div>
             </div>
@@ -48,7 +50,10 @@
 
         {% endfor %}
         <div class="row">
+          <div class="col-lg-12">
+            <br/><br/><br/>
           <input class="btn bueno-btn" type="submit" value="Update" />
+        </div>
         </div>
       </form>
     {% endif %}

@@ -15,7 +15,7 @@ Login
 
   <div class="contact-form-area">
     <h4 class="mb-50">Login</h4>
-    {% for error in login_form.errors %}
+    {% for error in errors %}
       <div class="alert alert-danger" role="alert">
         <strong>Error</strong> {{error}}
       </div>
@@ -47,7 +47,7 @@ Login
   </form>
 
     <a class="loginBtn loginBtn--facebook" href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
-  
+
 
 {% endif %}
 
