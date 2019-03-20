@@ -22,10 +22,12 @@ def home(request):
 
     recipes_by_date = Recipe.objects.order_by('-created_at')[:5]
     recipes_by_views = Recipe.objects.order_by('-views')[:5]
-    recipe_by_rating = Recipe.objects.filter(ratings__isnull=False).order_by('ratings__average')[:5]
-    context_dict = {"recipes_by_date": recipes_by_date, "recipes_by_views": recipes_by_views, "recipes_by_rating": recipe_by_rating}
+    recipes_by_rating = Recipe.objects.filter(ratings__isnull=False).order_by('-ratings__average')[:5]
+    context_dict = {"recipes_by_date": recipes_by_date, "recipes_by_views": recipes_by_views, "recipes_by_rating": recipes_by_rating}
 
     return render(request, 'cookflixapp/home.html', context_dict)
+
+
 
 def about(request):
     return render(request, 'cookflixapp/about.html', {})
@@ -94,6 +96,7 @@ def recipe(request, id):
         if hit_count_response.hit_counted:
                 recipe.views = recipe.views + 1
                 recipe.save()
+
 
     return render(request, 'cookflixapp/recipe.html', {'recipe' : recipe, 'comments' : comments})
 

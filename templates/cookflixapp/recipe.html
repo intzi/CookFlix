@@ -31,13 +31,13 @@
                           <h4 class="post-title">{{ recipe.title }}</h4>
                           <div class="post-meta mb-50">
                               <a href="#" class="post-date">{{ recipe.created_at }}</a>
-                              <a href="#" class="post-author">By {{ recipe.user }}</a>
+                              <a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{ recipe.user }}</a>
                               <div>
-                              {% if user.is_authenticated %}
+
                               <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
                               {% ratings recipe %}
                               </div>
-                              {% endif %}
+                              
 
                           </div>
                       <div class="blog-video mb-50">
@@ -71,7 +71,7 @@
                                 <!-- Comment Meta -->
                                 <div class="comment-meta">
                                   <div class="d-flex">
-                                  
+
                                     <a class="post-author">{{ comment.user }}</a>
                                     <a class="post-date">{{ comment.created_at }}</a>
                                   </div>

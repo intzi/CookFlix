@@ -23,6 +23,11 @@ Login
   </div>
 
 
+  <div class="bueno-post-area mb-70">
+      <div class="container">
+          <div class="row justify-content-center">
+              <!-- Post Area -->
+              <div class="col-12 col-lg-8 col-xl-9">
 
   <form id="login_form" method="post" action="{% url 'login' %}">
     {% csrf_token %}
@@ -43,13 +48,15 @@ Login
       <div class="col-12">
         <button class="btn bueno-btn mt-30" type="submit" name="submit">Login</button>
       </div>
+
+        <a class="loginBtn loginBtn--facebook mt-30" href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+
     </div>
 
   </form>
-
-  <div class="row">
-    <a class="loginBtn loginBtn--facebook mt-30" href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
-  </div>
+</div>
+</div>
+</div>
 
 
 

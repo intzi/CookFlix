@@ -1,5 +1,7 @@
 {% extends 'cookflixapp/base.html'%}
 {% load staticfiles %}
+{% load ratings %}
+
 
 
 {% block title_block %}
@@ -8,6 +10,7 @@ Home
 
 
 {% block body_block %}
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
 
 <!-- ##### TOP Area Start ##### -->
 <div class="container">
@@ -30,8 +33,9 @@ Home
             <div class="blog-content">
               <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
-                <a>foo.ratings.get()</a>
-                <a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
+                <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+                {% ratings recipe %}
+                <br/><a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
             </div>
@@ -57,8 +61,8 @@ Home
             <div class="blog-content">
               <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
-                <a>{{ recipe.created_at }}</a>
-                <a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
+                {{ recipe.created_at }}
+                <br/><a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
           </div>
@@ -84,8 +88,8 @@ Home
             <div class="blog-content">
               <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
-                <a >Views: {{ recipe.views }}</a>
-                <a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
+                Views: {{ recipe.views }}
+                <br/><a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
           </div>

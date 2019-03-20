@@ -52,6 +52,7 @@ class Recipe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     views = models.IntegerField(default=0)
+    
 
     def __str__(self):
         return self.title +":"+str(self.video_file)

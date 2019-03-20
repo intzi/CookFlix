@@ -22,8 +22,9 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = MEDIA_DIR
 LOGIN_URL = '/login/'
 STAR_RATINGS_RERATE = False
-STAR_RATINGS_STAR_HEIGHT = 20
-STAR_RATINGS_STAR_WIDTH = 20
+STAR_RATINGS_STAR_HEIGHT = 15
+STAR_RATINGS_STAR_WIDTH = 15
+STAR_RATINGS_ANONYMOUS = False
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
