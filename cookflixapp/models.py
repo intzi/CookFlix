@@ -56,6 +56,11 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title +":"+str(self.video_file)
 
+    def delete(self, *args, **kwargs):
+        self.video_file.delete()
+        self.thumbnail.delete()
+        super().delete(*args, **kwargs)
+
 class Comment(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

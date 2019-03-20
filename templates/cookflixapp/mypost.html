@@ -8,13 +8,13 @@
 
 {% block body_block %}
 <!-- ##### Posts Area End ##### -->
-
-
-
-            <!-- Post Area -->
-
-<h4 class="mb-50">My Recipes</h4>
-<div class="bueno-post-area mb-70">
+<div class="col-lg-12">
+{% if user.is_authenticated and request.user == user %}
+  <h4 class="mb-50" align="center">My Recipes</h4>
+{% else %}
+  <h4 class="mb-50" align="center">{{user}}'s Recipes</h4>
+{% endif %}
+</div>
 <!-- <div class="bueno-post-area mb-70"> -->
     <div class="container">
         <div class="row justify-content-center">
@@ -25,34 +25,52 @@
                 <input type='text' name='q' placeholder='Search Recipes' value='{{ request.GET.q }}'>
                 <input type='submit' value='Search' />
               </form> -->
+              <table class="table mb-0" style="table-layout:fixed">
+                <thead class="table-active">
+                  <tr>
+                    <th width="150">Cover</th>
+                    <th>Title</th>
+                    <th width="100">Cuisine</th>
+                    <th width="200">Time</th>
+                    <th width="300">Description</th>
+                    <th width="100">View</th>
+                    {% if user.is_authenticated and request.user == user %}
+                      <th width="100">Delete</th>
+                    {% endif %}
+                  </tr>
+                </thead>
 
-              {% for recipe in recipes %}
+                <tbody>
+                  {% for recipe in recipes %}
+                  <tr>
+                    <td><img src="{{ MEDIA_URL }}{{ recipe.thumbnail }}" alt=""></td>
+                    <td>{{ recipe.title }}</td>
+                    <td>{{ recipe.cuisine_type }}</td>
+                    <td>{{ recipe.created_at }}</td>
+                    <td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{ recipe.description }}</td>
+                    <td>
+                      <a href="{% url 'recipe' id=recipe.id %}" class="btn btn-info btn-sm">View</a>
+                    </td>
 
-                <!-- Single Blog Post -->
-                <div class="single-blog-post style-1 d-flex flex-wrap mb-30">
-                    <!-- Blog Thumbnail -->
-                    <div style="width:300px; height:200px">
-                        <img  src="{{ MEDIA_URL }}{{ recipe.thumbnail }}" alt="">
-                    </div>
-                    <!-- Blog Content -->
-                    <div class="blog-content">
-                        <a href="{% url 'browse' cuisine_type=recipe.cuisine_type %}"class="post-tag">{{ recipe.cuisine_type }}</a>
-                        <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
-                        <div class="post-meta">
-                            <a class="post-date">{{ recipe.created_at }}</a>
-                            <a class="post-author">By {{ recipe.user }}</a>
-                        </div>
-                        <p>{{ recipe.description }}</p>
-                    </div>
-                </div>
+                    {% if user.is_authenticated and request.user == user %}
+                      <td>
+                        <form method="post" action="{% url 'delete_post' id=recipe.id %}">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                      </td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
 
-              {% endfor %}
             </div>
 
         </div>
     </div>
 
-  
+
 <!-- </div> -->
 <!-- ##### Posts Area End ##### -->
 

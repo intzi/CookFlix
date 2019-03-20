@@ -58,7 +58,7 @@ Home
               <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
                 <a href="{% url 'recipe' id=recipe.id %}" class="post-date">{{ recipe.created_at }}</a>
-                <a href="{% url 'recipe' id=recipe.id %}" class="post-author">By {{recipe.user}}</a>
+                <a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
           </div>

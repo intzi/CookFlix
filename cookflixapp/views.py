@@ -2,7 +2,7 @@ from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm, CommentForm
 from cookflixapp.models import UserProfile, Comment
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect
 from cookflixapp.models import Recipe
 from django.contrib.auth.decorators import login_required
@@ -14,6 +14,7 @@ from django.shortcuts import get_object_or_404
 from pprint import pprint
 from hitcount.models import HitCount
 from hitcount.views import HitCountMixin
+from django.views.generic.edit import DeleteView
 
 # Create your views here.
 
@@ -109,6 +110,7 @@ def upload(request):
             recipe = recipeForm.save(commit=False)
             recipe.user_id = user_id
             recipe.save()
+            return redirect('recipe', id=recipe.id)
         else:
             print(recipeForm.errors)
 
@@ -191,7 +193,18 @@ def profile(request, username):
 def mypost(request, username):
     user = User.objects.get(username=username)
     recipes = Recipe.objects.filter(user = user)
-    return render(request, 'cookflixapp/mypost.html', {'recipes' : recipes})
+    return render(request, 'cookflixapp/mypost.html', {'recipes' : recipes, 'user' : user})
+
+def delete_post(request, id):
+    try:
+        if request.method=='POST':
+            recipe = Recipe.objects.get(id=id)
+            user = recipe.user
+            recipe.delete()
+    except:
+        recipe = None
+
+    return redirect('mypost', username = user.username)
 
 
 def save_facebook_profile(backend, user, response, *args, **kwargs):
