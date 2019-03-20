@@ -19,25 +19,25 @@ Home
       <div class="single-widget-area add-widget mb-30">
         <img src="{% static 'img/top_rated.jpg'%}" alt="">
       </div>
-
+      {% for recipe in recipes_by_rating %}
         <div class="single-widget-area post-widget">
           <div class="single-post-area d-flex mb-30">
 
             <div class="blog-thumbnail">
-            <img src="{% static 'img/food.jpg'%}" alt="">
+            <img src="{{ MEDIA_URL }}{{recipe.thumbnail }}" alt="{{ recipe.title }}">
              </div>
 
-
             <div class="blog-content">
-              <a href="#" class="post-title">Burger with fries</a>
+              <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
-                <a href="#" class="post-date">July 11, 2018</a>
-                <a href="#" class="post-author">By Julia Stiles</a>
+                <a href="{% url 'recipe' id=recipe.id %}">foo.ratings.get()</a>
+                <a href="{% url 'recipe' id=recipe.id %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
+            </div>
+            </div>
+            {% endfor %}
           </div>
-        </div>
-    </div>
 
     <!-- Recently Added -->
     <div class="col-4">

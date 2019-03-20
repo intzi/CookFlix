@@ -3,6 +3,8 @@ import uuid
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
+from django.contrib.contenttypes.fields import GenericRelation
+from star_ratings.models import Rating
 
 CUISINE_CHOICES = (
     ('CHINESE','CHINESE'),
@@ -43,6 +45,7 @@ class Recipe(models.Model):
     cuisine_type = models.CharField(max_length=10, choices=CUISINE_CHOICES, default='CHINESE')
     title = models.CharField(max_length=50, verbose_name='Recipe Name')
     description = models.CharField(max_length=2000)
+    ratings = GenericRelation(Rating, related_query_name='rrating')
     taste = models.IntegerField(default=0)
     difficulty = models.IntegerField(default=0)
     price = models.IntegerField(default=0)

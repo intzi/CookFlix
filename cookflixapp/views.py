@@ -21,7 +21,8 @@ def home(request):
 
     recipes_by_date = Recipe.objects.order_by('-created_at')[:5]
     recipes_by_views = Recipe.objects.order_by('-views')[:5]
-    context_dict = {"recipes_by_date": recipes_by_date, "recipes_by_views": recipes_by_views}
+    recipe_by_rating = Recipe.objects.filter(ratings__isnull=False).order_by('ratings__average')[:5]
+    context_dict = {"recipes_by_date": recipes_by_date, "recipes_by_views": recipes_by_views, "recipes_by_rating": recipe_by_rating}
 
     return render(request, 'cookflixapp/home.html', context_dict)
 

@@ -20,6 +20,6 @@ urlpatterns = [
     url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^(?P<username>[\w\-]+)/mypost/$', views.mypost, name='mypost'),
-
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,5 +1,6 @@
 {% extends 'cookflixapp/base2.html' %}
 {% load staticfiles %}
+{% load ratings %}
 
 
 {% block title_block %}
@@ -8,6 +9,7 @@
 
 {% block extra_css_files_block %}
   <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
 {% endblock %}
 
 {% block body_block %}
@@ -29,6 +31,13 @@
                           <div class="post-meta mb-50">
                               <a href="#" class="post-date">{{ recipe.created_at }}</a>
                               <a href="#" class="post-author">By {{ recipe.user }}</a>
+                              <div>
+                              {% if user.is_authenticated %}
+                              <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+                              {% ratings recipe %}
+                              </div>
+                              {% endif %}
+
                           </div>
                       <div class="blog-video mb-50">
                           <video controls width='100%'>
