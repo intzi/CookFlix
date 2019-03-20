@@ -5,3 +5,4 @@ System Requirements
 - bcrypt 3.1.6
 - social-auth-app-django
 - django-hitcount
+- django-star-ratings
