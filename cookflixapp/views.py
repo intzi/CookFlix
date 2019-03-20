@@ -192,7 +192,7 @@ def profile(request, username):
 def mypost(request, username):
     user = User.objects.get(username=username)
     recipes = Recipe.objects.filter(user = user)
-    return render(request, 'cookflixapp/mypost.html', {'recipes' : recipes})
+    return render(request, 'cookflixapp/mypost.html', {'recipes' : recipes, 'user' : user})
 
 def delete_post(request, id):
     try:
