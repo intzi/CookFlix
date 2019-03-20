@@ -16,6 +16,7 @@
 
 
   <!-- ##### Post Details Area Start ##### -->
+  <div class="col-lg-12">
   <section class="post-news-area section-padding-100-0 mb-70">
       <div class="container">
           <div class="row justify-content-center">
@@ -65,11 +66,12 @@
                               <div class="comment-content d-flex">
                                 <!-- Comment Author -->
                                 <div class="comment-author">
-                                  <img src="img/bg-img/32.jpg" alt="author">
+                                  <img src="{{ MEDIA_URL }}{{ comment.user.userprofile.picture }}" alt="author">
                                 </div>
                                 <!-- Comment Meta -->
                                 <div class="comment-meta">
                                   <div class="d-flex">
+                                  
                                     <a class="post-author">{{ comment.user }}</a>
                                     <a class="post-date">{{ comment.created_at }}</a>
                                   </div>
@@ -108,7 +110,7 @@
   </section>
   <!-- ##### Post Details Area End ##### -->
 
-
+</div>
 
 
 {% endblock %}

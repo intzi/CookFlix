@@ -30,8 +30,8 @@ Home
             <div class="blog-content">
               <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
-                <a href="{% url 'recipe' id=recipe.id %}">foo.ratings.get()</a>
-                <a href="{% url 'recipe' id=recipe.id %}" class="post-author">By {{recipe.user}}</a>
+                <a>foo.ratings.get()</a>
+                <a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
             </div>
@@ -57,7 +57,7 @@ Home
             <div class="blog-content">
               <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
-                <a href="{% url 'recipe' id=recipe.id %}" class="post-date">{{ recipe.created_at }}</a>
+                <a>{{ recipe.created_at }}</a>
                 <a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
@@ -84,8 +84,8 @@ Home
             <div class="blog-content">
               <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
-                <a href="{% url 'recipe' id=recipe.id %}" class="post-date">Views: {{ recipe.views }}</a>
-                <a href="{% url 'recipe' id=recipe.id %}" class="post-author">By {{recipe.user}}</a>
+                <a >Views: {{ recipe.views }}</a>
+                <a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
           </div>

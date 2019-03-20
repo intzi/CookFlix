@@ -13,7 +13,7 @@
 
   {% if user.is_authenticated %}
     <div class="contact-form-area mb-70">
-      <h4 class="mb-50">Upload A Recipe</h4>
+      <h4 class="mb-50" align="center">Upload A Recipe</h4>
       {% for error in recipe_form.errors %}
         <div class="alert alert-danger" role="alert">
           <strong>Error</strong> {{error}}
@@ -27,10 +27,10 @@
             <div class="form-group">
               {% if field.name == "video_file" %}
                 <input class="file-input-hide" id="input_{{field.name}}" required type="file" accept="video/*" name="{{ field.name }}"  placeholder="{{ field.label }}">
-                <label class="form-control" for="input_{{field.name}}">Click to select: {{ field.label }}</label>
+                <label class="form-control" for="input_{{field.name}}">Click here to select a video</label>
               {% elif field.name == "thumbnail" %}
                 <input class="file-input-hide" id="input_{{field.name}}" required type="file" accept="image/*" name="{{ field.name }}"  placeholder="{{ field.label }}">
-                <label class="form-control" for="input_{{field.name}}">Click to select: {{ field.label }}</label>
+                <label class="form-control" for="input_{{field.name}}">Click here to select a picture</label>
               {% elif field.name == "user_id" %}
                 <input type="hidden" name="{{ field.name }}" value="{{ user.id }}">
               {% elif field.name == "cuisine_type" %}

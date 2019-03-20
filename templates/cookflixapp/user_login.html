@@ -12,9 +12,9 @@ Login
     <strong>already logged in!</strong>
     <a href="{% url 'home' %}">Return to the homepage.</a><br />
 {% else %}
-
-  <div class="contact-form-area">
-    <h4 class="mb-50">Login</h4>
+<div class="col-lg-12">
+  <div class="contact-form-area" >
+    <h4 class="mb-50" align="center">Login</h4>
     {% for error in login_form.errors %}
       <div class="alert alert-danger" role="alert">
         <strong>Error</strong> {{error}}
@@ -49,6 +49,6 @@ Login
 
 {% endif %}
 
-
+</div>
 
 {% endblock %}
