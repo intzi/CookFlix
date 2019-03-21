@@ -113,10 +113,8 @@ def add_user(username, password):
     return u
 
 def add_user_profile(user, name, email):
-    #print("########### User: "+user["id"])
-    print("########### Name: "+name)
-    print("########### Email: "+email)
-    up = UserProfile.objects.get_or_create()
+
+    up = UserProfile.objects.get_or_create(user = user)[0]
     up.name = name
     up.email = email
     up.rating = 0

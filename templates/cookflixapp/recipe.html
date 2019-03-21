@@ -1,16 +1,17 @@
-{% extends 'cookflixapp/base2.html' %}
+{% extends 'cookflixapp/base.html' %}
 {% load staticfiles %}
 {% load ratings %}
+
+{% block extra_css_files_block %}
+  <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+{% endblock %}
 
 
 {% block title_block %}
   Recipe
 {% endblock %}
 
-{% block extra_css_files_block %}
-  <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
-{% endblock %}
 
 {% block body_block %}
 
@@ -31,13 +32,12 @@
                           <h4 class="post-title">{{ recipe.title }}</h4>
                           <div class="post-meta mb-50">
                               <a href="#" class="post-date">{{ recipe.created_at }}</a>
-                              <a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{ recipe.user }}</a>
+                              <a href="{% url 'myrecipes' username=recipe.user %}" class="post-author">By {{ recipe.user }}</a>
                               <div>
 
-                              <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
                               {% ratings recipe %}
                               </div>
-                              
+
 
                           </div>
                       <div class="blog-video mb-50">
@@ -117,4 +117,5 @@
 
 {% block extra_js_files_block %}
   <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
+  <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 {% endblock %}

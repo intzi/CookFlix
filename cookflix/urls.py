@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^search/$', views.search, name='search'),
     url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
-    url(r'^(?P<username>[\w\-]+)/mypost/$', views.mypost, name='mypost'),
+    url(r'^(?P<username>[\w\-]+)/myrecipes/$', views.myrecipes, name='myrecipes'),
     url(r'^browse/(?P<id>[\d]+)', views.delete_post, name='delete_post'),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
 ]

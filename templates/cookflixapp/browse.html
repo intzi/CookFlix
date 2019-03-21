@@ -1,4 +1,4 @@
-{% extends 'cookflixapp/base3.html' %}
+{% extends 'cookflixapp/base.html' %}
 {% load staticfiles %}
 {% load ratings %}
 
@@ -41,9 +41,8 @@
                         <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
                         <div class="post-meta">
                             <a class="post-date">{{ recipe.created_at }}</a>
-                            <a a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{ recipe.user }}</a>
+                            <a a href="{% url 'myrecipes' username=recipe.user %}" class="post-author">By {{ recipe.user }}</a>
                             <br/>
-                            <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
                             {% ratings recipe %}
                             <br/>
                               <p>{{ recipe.description }}</p>
@@ -61,4 +60,9 @@
 </div>
 <!-- ##### Posts Area End ##### -->
 
+{% endblock %}
+
+
+{% block extra_js_files_block %}
+  <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 {% endblock %}

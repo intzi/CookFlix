@@ -2,15 +2,16 @@
 {% load staticfiles %}
 {% load ratings %}
 
-
+{% block extra_css_files_block %}
+  <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+{% endblock %}
 
 {% block title_block %}
-Home
+  Home
 {% endblock %}
 
 
 {% block body_block %}
-<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
 
 <!-- ##### TOP Area Start ##### -->
 <div class="container">
@@ -33,9 +34,8 @@ Home
             <div class="blog-content">
               <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
-                <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
                 {% ratings recipe %}
-                <br/><a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
+                <br/><a href="{% url 'myrecipes' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
             </div>
@@ -62,7 +62,7 @@ Home
               <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
                 {{ recipe.created_at }}
-                <br/><a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
+                <br/><a href="{% url 'myrecipes' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@ Home
               <a href="{% url 'recipe' id=recipe.id %}" class="post-title">{{ recipe.title }}</a>
               <div class="post-meta">
                 Views: {{ recipe.views }}
-                <br/><a href="{% url 'mypost' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
+                <br/><a href="{% url 'myrecipes' username=recipe.user %}" class="post-author">By {{recipe.user}}</a>
               </div>
             </div>
           </div>
@@ -99,4 +99,8 @@ Home
   </div>
 </div>
 
+{% endblock %}
+
+{% block extra_js_files_block %}
+  <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
 {% endblock %}

@@ -67,15 +67,16 @@
                         <div class="top-search-area">
                           <form method='GET' action='{% url 'browse' %}'>
                                 <div class="row">
-                                    <!-- <input type="search" name="top-search" id="topSearch" placeholder="Search for recipes" />
-                                    <button type="submit" class="btn"><i class="fa fa-search"></i></button> -->
+
                                     <input type='text' name='q' id="topSearch" class="col-sm-10" placeholder="Search For Recipes" value='{{ request.GET.q }}'/>
                                     <button type="submit" class="btn"><i class="fa fa-search"></i></button>
+
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="col-sm-6 d-none d-lg-block">
+
                       <!-- Login/Register -->
                       <div class="login-area pull-right">
                         {% if request.user.is_authenticated %}
@@ -86,15 +87,7 @@
                         <a class="btn bueno-btn btn-sm" href="{% url 'register' %}">Register</a>
                         {% endif %}
                       </div>
-                        <!-- Top Social Info -->
-                        <!-- <div class="top-social-info">
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Behance"><i class="fa fa-behance" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        </div> -->
+
                     </div>
                 </div>
             </div>
@@ -132,39 +125,64 @@
                                   <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                               </div>
 
+                              {% url 'browse' as browse_url %}
+
                               <!-- Nav Start -->
-                              <div class="classynav">
-                                  <ul>
-                                       <li><a href="{% url 'home' %}">Home</a></li>
-                                       <li><a href="{% url 'browse' %}">Browse</a></li>
-                                       {% if user.is_authenticated %}
-                                       <li><a href="{% url 'upload' %}">Upload</a></li>
-                                       <li><a href="{% url 'mypost' user.username %}">My Recipes</a></li>
-                                       <li><a href="{% url 'profile' user.username %}">My Profile</a></li>
-                                       {% endif %}
-                                       <li><a href="{% url 'about' %}">About</a></li>
+                              {% if browse_url == request.path %}
+                                <div class="classynav">
+                                    <ul>
+                                         <li><a href="{% url 'home' %}">Home</a></li>
+                                         <li><a href="{% url 'browse' %}">Browse</a></li>
+                                         <li><a href="{% url 'browse' %}">Cuisines</a>
+                                            <div class="megamenu">
+                                                <ul class="single-mega cn-col-4">
+                                                    <li><a href="{% url 'browse' cuisine_type='CHINESE' %}">- Chinese</a></li>
+                                                    <li><a href="{% url 'browse' cuisine_type='INDIAN' %}">- Indian</a></li>
+                                                    <li><a href="{% url 'browse' cuisine_type='ITALIAN' %}">- Italian</a></li>
+                                                </ul>
+                                                <ul class="single-mega cn-col-4">
+                                                    <li><a href="{% url 'browse' cuisine_type='KOREAN' %}">- Korean</a></li>
+                                                    <li><a href="{% url 'browse' cuisine_type='SPANISH' %}">- Spanish</a></li>
+                                                    <li><a href="{% url 'browse' cuisine_type='FRENCH' %}">- French</a></li>
+
+                                                </ul>
+                                                <ul class="single-mega cn-col-4">
+                                                    <li><a href="{% url 'browse' cuisine_type='PAKISTANI' %}">- Pakistani</a></li>
+                                                    <li><a href="{% url 'browse' cuisine_type='GREEK' %}">- Greek</a></li>
+                                                    <li><a href="{% url 'browse' cuisine_type='JAPANESE' %}">- Japanese</a></li>
+                                                </ul>
+                                                <ul class="single-mega cn-col-4">
+                                                    <li><a href="{% url 'browse' cuisine_type='AMERICAN' %}">- American</a></li>
+                                                    <li><a href="{% url 'browse' cuisine_type='BRITISH' %}">- British</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                         {% if user.is_authenticated %}
+                                         <li><a href="{% url 'upload' %}">Upload</a></li>
+                                         <li><a href="{% url 'myrecipes' user.username %}">My Recipes</a></li>
+                                         <!-- <li><a href="{% url 'profile' user.username %}">My Profile</a></li> -->
+                                         {% endif %}
+                                         <li><a href="{% url 'about' %}">About</a></li>
 
 
-                                  </ul>
+                                    </ul>
 
 
-                              </div>
-                              <!-- <div class="classynav">
-                                  <ul>
-                                      <li><a href="{% url 'home' %}">Home</a></li>
-                                      <li><a href="{% url 'browse' %}">Browse</a></li>
-                                    {% if user.is_authenticated %}
-                                      <li><a href="{% url 'upload' %}">Upload</a></li>
-                                      <li><a href="{% url 'mypost' user.username %}">My Posts</a></li>
-                                      <li><a href="{% url 'profile' user.username %}">My Profile</a></li>
-                                    {% endif %}
-                                      <li><a href="{% url 'about' %}">About</a></li>
-                                      <li><a href="{% url 'search' %}">Search API</a></li>
-
-                                  </ul>
-
-
-                              </div> -->
+                                </div>
+                              {% else %}
+                                <div class="classynav">
+                                    <ul>
+                                         <li><a href="{% url 'home' %}">Home</a></li>
+                                         <li><a href="{% url 'browse' %}">Browse</a></li>
+                                         {% if user.is_authenticated %}
+                                         <li><a href="{% url 'upload' %}">Upload</a></li>
+                                         <li><a href="{% url 'myrecipes' user.username %}">My Recipes</a></li>
+                                         <li><a href="{% url 'profile' user.username %}">My Profile</a></li>
+                                         {% endif %}
+                                         <li><a href="{% url 'about' %}">About</a></li>
+                                    </ul>
+                                </div>
+                              {% endif%}
                               <!-- Nav End -->
 
                           </div>
@@ -178,32 +196,34 @@
         </div>
     </header>
     <!-- ##### Header Area End ##### -->
+    <div class="container">
+      <div class="row" style="display:grid">
+        {% block body_block %}
 
-    {% block body_block %}
-
-    {% endblock %}
+        {% endblock %}
+      </div>
+    </div>
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-sm-5">
+                <div class="col-2 col-sm-12">
                     <!-- Copywrite Text -->
                     <!-- <p class="copywrite-text"><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-<!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. </p> -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. </p>-->
                 </div>
-                <div class="col-12 col-sm-7">
-                    <!-- Footer Nav -->
-                    <!-- <div class="footer-nav">
-                        <ul>
+                 <div class="col-12 col-sm-7">
+                  <!-- <div class="footer-nav"> -->
+                        <!-- <ul>
                             <li class="active"><a href="#">Home</a></li>
                             <li><a href="#">Recipes</a></li>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div> -->
+                        </ul> -->
+                    <!-- </div> -->
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ def home(request):
 
     recipes_by_date = Recipe.objects.order_by('-created_at')[:5]
     recipes_by_views = Recipe.objects.order_by('-views')[:5]
-    recipes_by_rating = Recipe.objects.filter(ratings__isnull=False).order_by('-ratings__average')[:5]
+    recipes_by_rating = Recipe.objects.order_by('-ratings__average')[:5]
     context_dict = {"recipes_by_date": recipes_by_date, "recipes_by_views": recipes_by_views, "recipes_by_rating": recipes_by_rating}
 
     return render(request, 'cookflixapp/home.html', context_dict)
@@ -193,10 +193,10 @@ def profile(request, username):
         'form' : profile_form
     })
 
-def mypost(request, username):
+def myrecipes(request, username):
     user = User.objects.get(username=username)
     recipes = Recipe.objects.filter(user = user)
-    return render(request, 'cookflixapp/mypost.html', {'recipes' : recipes, 'user' : user})
+    return render(request, 'cookflixapp/myrecipes.html', {'recipes' : recipes, 'user' : user})
 
 def delete_post(request, id):
     try:
@@ -207,7 +207,7 @@ def delete_post(request, id):
     except:
         recipe = None
 
-    return redirect('mypost', username = user.username)
+    return redirect('myrecipes', username = user.username)
 
 
 def save_facebook_profile(backend, user, response, *args, **kwargs):

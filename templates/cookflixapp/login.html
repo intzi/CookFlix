@@ -1,17 +1,17 @@
-{% extends 'cookflixapp/base2.html' %}
+{% extends 'cookflixapp/base.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
-Login
+  Login
 {% endblock %}
 
 
 {% block body_block %}
 
-{% if registered %}
-    <strong>already logged in!</strong>
-    <a href="{% url 'home' %}">Return to the homepage.</a><br />
-{% else %}
+  {% if registered %}
+      <strong>already logged in!</strong>
+      <a href="{% url 'home' %}">Return to the homepage.</a><br />
+  {% else %}
 
   <div class="contact-form-area">
     <h4 class="mb-50" align="center">Login</h4>
