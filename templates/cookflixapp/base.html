@@ -177,7 +177,7 @@
                                          {% if user.is_authenticated %}
                                          <li><a href="{% url 'upload' %}">Upload</a></li>
                                          <li><a href="{% url 'myrecipes' user.username %}">My Recipes</a></li>
-                                         <li><a href="{% url 'profile' user.username %}">My Profile</a></li>
+                                         <!-- <li><a href="{% url 'profile' user.username %}">My Profile</a></li> -->
                                          {% endif %}
                                          <li><a href="{% url 'about' %}">About</a></li>
                                     </ul>

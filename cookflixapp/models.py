@@ -22,7 +22,7 @@ CUISINE_CHOICES = (
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     # name = models.CharField(max_length=30, unique=True)
     email = models.EmailField(unique=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
@@ -52,7 +52,7 @@ class Recipe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     views = models.IntegerField(default=0)
-    
+
 
     def __str__(self):
         return self.title +":"+str(self.video_file)

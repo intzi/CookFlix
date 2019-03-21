@@ -21,8 +21,8 @@
             <div class="col-lg-12">
               <div class="form-group">
                 {% if field.name == "picture" %}
-                  <input class="file-input-hide" id="input_{{field.name}}" required type="file" accept="image/*" name="{{ field.name }}"  placeholder="{{ field.label }}">
-                  <label class="form-control" for="input_{{field.name}}">Click to select: {{ field.label }}</label>
+                  <input class="file-input-hide" id="input_{{field.name}}" type="file" accept="image/*" name="{{ field.name }}"  placeholder="{{ field.label }}">
+                  <label class="form-control" for="input_{{field.name}}">Click to select a picture</label>
                 {% else %}
                 <input  type="text" class="form-control" name="{{ field.name }}" value="{{ field.value }}" size="50" placeholder="{{ field.name }}">
                 {% endif %}
