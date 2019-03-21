@@ -1,6 +1,8 @@
 from django.contrib import admin
 from cookflixapp.models import UserProfile, Comment, Recipe, Review, Saved_Recipes
 
+# Defining all the fields of cookflixapp models that we want to display to the Admin page
+
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'email', 'preferred_cuisine', 'rating')
 

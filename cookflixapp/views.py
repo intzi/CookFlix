@@ -1,27 +1,23 @@
 from cookflixapp.forms import UserProfileForm, UserForm, RecipeForm, CommentForm
-from cookflixapp.models import UserProfile, Comment
+from cookflixapp.models import UserProfile, Comment, Recipe
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.http import HttpResponse, HttpResponseRedirect
-from cookflixapp.models import Recipe
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
 from cookflixapp.webhose_search import run_query
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from pprint import pprint
 from hitcount.models import HitCount
 from hitcount.views import HitCountMixin
 from django.views.generic.edit import DeleteView
-from django.http import JsonResponse
 
 
-# Create your views here.
-
+# Home view. Displays Popular - Top Rated and Latest Recipes.
 def home(request):
 
+    # Get the First 5 based on the order. :5
     recipes_by_date = Recipe.objects.order_by('-created_at')[:5]
     recipes_by_views = Recipe.objects.order_by('-views')[:5]
     recipes_by_rating = Recipe.objects.order_by('-ratings__average')[:5]
@@ -29,12 +25,14 @@ def home(request):
 
     return render(request, 'cookflixapp/home.html', context_dict)
 
-
-
+# About view. Information about the app.
 def about(request):
     return render(request, 'cookflixapp/about.html', {})
 
+# User_login view. Login authenticate.
 def user_login(request):
+
+    # If the request is POST then attempt to authenticate user. Otherwise redirect with error.
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -54,10 +52,7 @@ def user_login(request):
     else:
         return render(request, 'cookflixapp/login.html', {})
 
-
-def signup(request):
-    return render(request, 'cookflixapp/signup.html', {})
-
+# Browse view. Browse All Recipes or with a Cuisine Type Filter.
 def browse(request, cuisine_type=''):
     if cuisine_type == '':
         recipes = Recipe.objects.all()
@@ -86,11 +81,7 @@ def recipe(request, id):
         else:
             print(commentForm.errors)
     elif request.method == 'GET':
-        # HitCounter
-        # first get the related HitCount object for your model object
         hit_count = HitCount.objects.get_for_object(recipe)
-        # next, you can attempt to count a hit and get the response
-        # you need to pass it the request object as well
         hit_count_response = HitCountMixin.hit_count(request, hit_count)
         if hit_count_response.hit_counted:
                 recipe.views = recipe.views + 1
@@ -173,18 +164,13 @@ def profile(request, username):
     user_profile = UserProfile.objects.get(user=user)
 
     if request.method == 'POST':
-        #user_form = UserForm(request.POST, instance=user)
         profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
         if profile_form.is_valid():
-            #user_form.save()
             profile_form.save()
-            #messages.success(request, _('Your profile was successfully updated!'))
-            #return redirect('settings:profile')
             return redirect('profile', user.username)
         else:
             print(profile_form.errors)
     else:
-        #user_form = UserForm(instance=user)
         profile_form = UserProfileForm(instance=user_profile)
     return render(request, 'cookflixapp/profile.html', {
         'userprofile': user_profile,

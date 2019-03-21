@@ -5,35 +5,17 @@ from django.contrib.auth.models import User
 from django.core.validators import FileExtensionValidator
 from django.contrib.contenttypes.fields import GenericRelation
 from star_ratings.models import Rating
+from cookflixapp.global_data import GlobalData
 
-CUISINE_CHOICES = (
-    ('CHINESE','CHINESE'),
-    ('INDIAN','INDIAN'),
-    ('ITALIAN','ITALIAN'),
-    ('KOREAN','KOREAN'),
-    ('SPANISH','SPANISH'),
-    ('FRENCH','FRENCH'),
-    ('PAKISTANI','PAKISTANI'),
-    ('GREEK','GREEK'),
-    ('JAPANESE','JAPANESE'),
-    ('AMERICAN','AMERICAN'),
-    ('BRITISH','BRITISH'),
-)
-
-
+# UserProfile Model is an extension of user to store extra information like first name email etc..
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # name = models.CharField(max_length=30, unique=True)
     email = models.EmailField(unique=True)
     picture = models.ImageField(upload_to='profile_images', blank=True)
-    # preferred_cuisine = models.CharField(max_length=50, blank=True)
     rating = models.DecimalField(max_digits=2, decimal_places=1, blank=True, default=0)
     first_name = models.CharField(max_length=50, blank=False)
     last_name = models.CharField(max_length=50, blank=False)
-    preferred_cuisine = models.CharField(max_length=50, choices=CUISINE_CHOICES, default='CHINESE')
-
-    #class ReadonlyMeta:
-    #    readonly= ["rating"]
+    preferred_cuisine = models.CharField(max_length=50, choices=GlobalData.cuisine_types(), default='CHINESE')
 
     def __str__(self):
         return self.user.username
@@ -42,7 +24,7 @@ class UserProfile(models.Model):
 class Recipe(models.Model):
     thumbnail = models.FileField(upload_to="debug/", null=False, verbose_name='Thumbnail Upload', validators=[FileExtensionValidator(allowed_extensions=['png','jpeg','jpg'])])
     video_file= models.FileField(upload_to="debug/", null=False, verbose_name='Video Upload', validators=[FileExtensionValidator(allowed_extensions=['mp4','webm','ogg'])])
-    cuisine_type = models.CharField(max_length=10, choices=CUISINE_CHOICES, default='CHINESE')
+    cuisine_type = models.CharField(max_length=10, choices=GlobalData.cuisine_types(), default='CHINESE')
     title = models.CharField(max_length=50, verbose_name='Recipe Name')
     description = models.CharField(max_length=2000)
     ratings = GenericRelation(Rating, related_query_name='rrating')
@@ -52,7 +34,6 @@ class Recipe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     views = models.IntegerField(default=0)
-
 
     def __str__(self):
         return self.title +":"+str(self.video_file)
@@ -67,6 +48,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self
 
