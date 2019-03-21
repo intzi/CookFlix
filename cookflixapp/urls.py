@@ -5,5 +5,5 @@ from django.conf.urls.static import static
 
 app_name = 'cookflixapp'
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
+    # All The URLs are defined in cookflix/urls.py
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
