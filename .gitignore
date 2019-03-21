@@ -6,3 +6,4 @@ __pycahche__/*
 *.key
 media/debug/*
 media/profile_images/*
+cookflixapp/migrations/*
