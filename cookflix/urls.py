@@ -9,7 +9,6 @@ urlpatterns = [
     url(r'^about/', views.about, name='about'),
     url(r'^admin/', admin.site.urls),
     url(r'^login/$',views.user_login, name='login'),
-    url(r'^signup/', views.signup, name='signup'),
     url(r'^register/$', views.register, name='register'),
     url(r'^browse/$', views.browse, name='browse'),
     url(r'^browse/(?P<cuisine_type>[\w\-]+)/$', views.browse, name='browse'),
