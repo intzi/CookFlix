@@ -66,10 +66,7 @@ def browse(request, cuisine_type=''):
 
     query = request.GET.get("q")
     if query:
-        recipes = recipes.filter(
-            Q(title__icontains=query),
-            Q(description__icontains=query)
-        ).distinct()
+        recipes = recipes.filter(title__icontains=query)
 
     return render(request, 'cookflixapp/browse.html', {'recipes' : recipes })
 
