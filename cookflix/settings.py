@@ -34,7 +34,7 @@ SECRET_KEY = 'h(vk+sgl6fpj&(zym$!qv^$iq4+jst5orq*=)#tvyavv82*t#e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://CookFlix.eu.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'http://CookFlix.eu.pythonanywhere.com']
 
 # Static folders
 STATICFILES_DIRS = [STATIC_DIR, ]
