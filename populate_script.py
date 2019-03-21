@@ -15,8 +15,9 @@ def populate():
             "password" : "password",
             "user_profile" :
             {
-                "name" : "Yingjia Li",
-                "email" : "yingjia@gmail.com",
+                "first_name" : "Alice",
+                "last_name" : "cook",
+                "email" : "alice@cook.com",
                 "preferred_cuisine" : "CHINESE",
             },
             "recipes" :
@@ -99,7 +100,7 @@ def populate():
 
         u = add_user(user["username"], user["password"])
         user_profile = user["user_profile"]
-        #add_user_profile(u, user_profile["name"], user_profile["email"])
+        add_user_profile(u, user["user_profile"])
         for recipe in user["recipes"]:
             print(recipe['video_file'])
             add_recipe(u.id, recipe["title"], recipe["description"], recipe["thumbnail"], recipe["video_file"], recipe["cuisine_type"])
@@ -107,16 +108,18 @@ def populate():
 def add_user(username, password):
 
     u = User.objects.get_or_create(username=username)[0]
-    u.password = password
+    u.set_password(password)
     u.save()
 
     return u
-
-def add_user_profile(user, name, email):
+    
+def add_user_profile(user, user_profile):
 
     up = UserProfile.objects.get_or_create(user = user)[0]
-    up.name = name
-    up.email = email
+    up.first_name = user_profile["first_name"]
+    up.last_name = user_profile["last_name"]
+    up.email = user_profile["email"]
+    up.preferred_cuisine = user_profile["preferred_cuisine"]
     up.rating = 0
     up.save()
 
