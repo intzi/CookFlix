@@ -16,15 +16,25 @@
 
         <div class="contact-form-area mb-70">
           <h4 class="mb-50" align="center">Sign up</h4>
-          {% for error in user_form.errors %}
-            <div class="alert alert-danger" role="alert">
-              <strong>Required</strong> {{error}}
-            </div>
+          
+          {% for field in user_form %}
+            {% if field.errors %}
+              {% for error in field.errors %}
+                <div class="alert alert-danger" role="alert">
+                  <strong>Error</strong> {{ error|escape }}
+                </div>
+              {% endfor %}
+            {% endif %}
           {% endfor %}
-          {% for error in profile_form.errors %}
-            <div class="alert alert-danger" role="alert">
-              <strong>Required</strong> {{error}}
-            </div>
+
+          {% for field in profile_form %}
+            {% if field.errors %}
+              {% for error in field.errors %}
+                <div class="alert alert-danger" role="alert">
+                  <strong>Error</strong> {{ error|escape }}
+                </div>
+              {% endfor %}
+            {% endif %}
           {% endfor %}
 
           <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
