@@ -15,6 +15,8 @@ from pprint import pprint
 from hitcount.models import HitCount
 from hitcount.views import HitCountMixin
 from django.views.generic.edit import DeleteView
+from django.http import JsonResponse
+
 
 # Create your views here.
 
@@ -216,3 +218,10 @@ def save_facebook_profile(backend, user, response, *args, **kwargs):
     user_profile.first_name = firstname
     user_profile.last_name = surname
     user_profile.save()
+
+def validate_username(request):
+    username = request.GET.get('username', None)
+    data = {
+        'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    return JsonResponse(data)

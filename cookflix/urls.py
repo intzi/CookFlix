@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^(?P<username>[\w\-]+)/myrecipes/$', views.myrecipes, name='myrecipes'),
     url(r'^browse/(?P<id>[\d]+)', views.delete_post, name='delete_post'),
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
+    url(r'^ajax/validate_username/$', views.validate_username, name='validate_username'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

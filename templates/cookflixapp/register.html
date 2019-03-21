@@ -16,7 +16,7 @@
 
         <div class="contact-form-area mb-70">
           <h4 class="mb-50" align="center">Sign up</h4>
-          
+
           {% for field in user_form %}
             {% if field.errors %}
               {% for error in field.errors %}
@@ -42,7 +42,7 @@
             {% csrf_token %}
             <div class="col-lg-12">
               <div class="form-group">
-                  <input required type="text" class="form-control" name="username" size="50" placeholder="username">
+                  <input required type="text" class="form-control" name="username" size="50" placeholder="username" id="id_username">
               </div>
             </div>
 
@@ -101,37 +101,6 @@
               <button class="btn bueno-btn mt-30" type="submit" name="submit">Register</button>
             </div>
 
-
-            <!-- {% for field in user_form %}
-              <div class="col-lg-12">
-                <div class="form-group">
-                  {% if field.name == "email" %}
-                    <input required type="email" class="form-control" name="{{ field.name }}"  placeholder="{{ field.name }}">
-                  {% else %}
-                    <input required type="text" class="form-control" name="{{ field.name }}" placeholder="{{ field.name }}">
-                  {% endif %}
-                </div>
-              </div>
-            {% endfor %}
-
-            {% for field in profile_form %}
-              {% if field.name == "picture" %}
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <input type="file" class="form-control" name="{{ field.name }}" placeholder="{{ field.name }}">
-                  </div>
-                </div>
-              {% else %}
-                <div class="col-lg-12">
-                  <div class="form-group">
-                    <input type="text" class="form-control" name="{{ field.name }}" placeholder="{{ field.name }}">
-                  </div>
-                </div>
-              {% endif %}
-
-            {% endfor %} -->
-
-
           </div>
           </form>
         </div>
@@ -140,4 +109,8 @@
 
     {% endif %}
     </div>
+{% endblock %}
+
+{% block extra_js_files_block %}
+  <script src="{% static 'customjs/username_validate.js' %}" type="text/javascript"></script>
 {% endblock %}
