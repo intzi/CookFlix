@@ -38,8 +38,29 @@ class searchViewTest(TestCase):
         response  = self.client.get(reverse('search'))
         self.assertEqual(response.status_code, 200)
 
-class LoginFunctionTest(TestCase):
+class uploadViewTest(TestCase):
+    def test_upload(self):
+        user = User.objects.create_user('cookflixTestUser','blabla@bla.com', 'badpasword123')
+        user = authenticate(username='cookflixTestUser', password='badpasword123')
+        user.save()
+        c = Client()
+        status = c.login(username='cookflixTestUser', password='badpasword123')
+        response = c.post('/login/', {'username':'cookflixTestUser', 'password':'badpasword123'})
+        response2 = c.get(reverse('upload'))
+        self.assertEqual(response2.status_code, 200)
 
+class MyRecipesViewTest(TestCase):
+    def test_myRecipes(self):
+        user = User.objects.create_user('cookflixTestUser','blabla@bla.com', 'badpasword123')
+        user = authenticate(username='cookflixTestUser', password='badpasword123')
+        user.save()
+        c = Client()
+        status = c.login(username='cookflixTestUser', password='badpasword123')
+        response = c.post('/login/', {'username':'cookflixTestUser', 'password':'badpasword123'})
+        response2 = c.get('/cookflixTestUser/myrecipes/')
+        self.assertEqual(response2.status_code, 200)
+
+class LoginFunctionTest(TestCase):
     def test_login(self):
         user = User.objects.create_user('cookflixTestUser','blabla@bla.com', 'badpasword123')
         user = authenticate(username='cookflixTestUser', password='badpasword123')
@@ -49,7 +70,6 @@ class LoginFunctionTest(TestCase):
         response = c.post('/login/', {'username':'cookflixTestUser', 'password':'badpasword123'})
         self.assertRedirects(response, reverse('home'),302)
         self.assertTrue(status, user.is_active)
-        
 
 class LogoutFunctionTest(TestCase):
     def test_logout(self):
@@ -78,3 +98,9 @@ class LogoutFunctionTest(TestCase):
 #         response = c.post('/upload/', form)
 #         self.assertEqual(form.title, 'karahi')
         
+def createUserAndLogin():
+    user = User.objects.create_user('cookflixTestUser','blabla@bla.com', 'badpasword123')
+    user = authenticate(username='cookflixTestUser', password='badpasword123')
+    user.save()
+    c = Client()
+    c.login(username='cookflixTestUser', password='badpasword123')
